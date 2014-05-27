@@ -26,16 +26,16 @@ defaults: &defaults
   encoding: utf8
   <<: *<%= ENV['RAILS_DB'] || "postgresql" %>
 
-development:
-  adapter: postgresql
-  encoding: utf8
-  database: culturart_development
-  pool: 5
-  username: culturart
-  password: 5133264991
-    
 # development:
-  # <<: *defaults
+  # adapter: postgresql
+  # encoding: utf8
+  # database: culturart_development
+  # pool: 5
+  # username: culturart
+  # password: 5133264991
+    
+development:
+  <<: *defaults
 
 test: &test
   <<: *defaults
