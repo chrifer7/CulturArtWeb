@@ -1,0 +1,24 @@
+https://bitbucket.org/Miguelos/rails-example/src
+Create Ruby 1.9 app
+Añadir cartucho postgresql
+Setear origin openshift
+Commit
+Push
+-----
+git clone ssh://5384315ce0b8cdf2ea00005d@culturartweb-pucp.rhcloud.com/~/git/culturartweb.git/
+cd culturartweb/
+----
+git add .
+git commit -m 'My changes'
+git push
+----
+PostgreSQL 9.2 database added.  Please make note of these credentials:
+
+   Root User: admindm2b4yw
+   Root Password: tujwgJbhwkdz
+   Database Name: culturartweb
+
+Connection URL: postgresql://$OPENSHIFT_POSTGRESQL_DB_HOST:$OPENSHIFT_POSTGRESQL_DB_PORT
+----
+rails g scaffold document name description:text created_on:date tags
+
