@@ -22,6 +22,8 @@ Connection URL: postgresql://$OPENSHIFT_POSTGRESQL_DB_HOST:$OPENSHIFT_POSTGRESQL
 ----
 rails g scaffold document name description:text created_on:date tags
 ----
-backup git—
+backup git
 http://www.hostatic.ro/2011/09/29/pushing-to-two-git-remote-origins-from-one-repository/
+dan@bart ~/XML-to-text-Tomboy $ git remote add backup user@server:/path/to/git/XML-to-text-Tomboy.git
+dan@bart ~/XML-to-text-Tomboy $ git push backup master:master
 
