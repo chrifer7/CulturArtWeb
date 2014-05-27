@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+
 gem 'rails', '~> 3.2.16'
 gem 'rack', '~> 1.4.5'
 
@@ -17,7 +18,7 @@ end
 group :development, :test do
   gem 'sqlite3'
   gem 'minitest'
-  gem 'thor', '= 0.14.6'
+  gem 'thor', '= 0.14.6'  
 end
 
 # Gems used only for assets and not required
