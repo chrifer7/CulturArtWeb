@@ -13,6 +13,7 @@ gem 'rack', '~> 1.4.5'
 
 group :production, :postgresql do
   gem 'pg'
+  gem 'activerecord-postgresql-adapter'
 end
 
 group :development, :test do
