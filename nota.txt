@@ -21,4 +21,7 @@ PostgreSQL 9.2 database added.  Please make note of these credentials:
 Connection URL: postgresql://$OPENSHIFT_POSTGRESQL_DB_HOST:$OPENSHIFT_POSTGRESQL_DB_PORT
 ----
 rails g scaffold document name description:text created_on:date tags
+----
+backup git—
+http://www.hostatic.ro/2011/09/29/pushing-to-two-git-remote-origins-from-one-repository/
 
