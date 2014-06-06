@@ -39,9 +39,9 @@ defaults: &defaults
 development:
   <<: *defaults
 
-#NET START postgresql-x64-9.3
-test: &test
-  <<: *defaults
+# #NET START postgresql-x64-9.3
+# test: &test
+  # <<: *defaults
 
 production:
   <<: *defaults
