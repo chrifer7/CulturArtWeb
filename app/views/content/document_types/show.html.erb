@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @content_document_type.name %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @content_document_type.description %>
+</p>
+
+<p>
+  <b>Icon:</b>
+  <%= @content_document_type.icon %>
+</p>
+
+<p>
+  <b>Icon file name:</b>
+  <%= @content_document_type.icon_file_name %>
+</p>
+
+<p>
+  <b>Icon content type:</b>
+  <%= @content_document_type.icon_content_type %>
+</p>
+
+
+<%= link_to 'Edit', edit_content_document_type_path(@content_document_type) %> |
+<%= link_to 'Back', content_document_types_path %>

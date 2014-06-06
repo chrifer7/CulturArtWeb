@@ -50,3 +50,6 @@ gem 'jquery-rails'
 
 # To use debugger
 # gem 'debugger'
+
+#Gemas añadidas al proyecto:
+

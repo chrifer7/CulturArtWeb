@@ -1,0 +1,29 @@
+<h1>Listing content_attribute_values</h1>
+
+<table>
+  <tr>
+    <th>Attribute</th>
+    <th>Name</th>
+    <th>Description</th>
+    <th>Icon</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @content_attribute_values.each do |content_attribute_value| %>
+  <tr>
+    <td><%= content_attribute_value.attribute_id %></td>
+    <td><%= content_attribute_value.name %></td>
+    <td><%= content_attribute_value.description %></td>
+    <td><%= content_attribute_value.icon %></td>
+    <td><%= link_to 'Show', content_attribute_value %></td>
+    <td><%= link_to 'Edit', edit_content_attribute_value_path(content_attribute_value) %></td>
+    <td><%= link_to 'Destroy', content_attribute_value, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Attribute value', new_content_attribute_value_path %>

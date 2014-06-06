@@ -1,0 +1,41 @@
+<h1>Listing content_heritages</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Description</th>
+    <th>Brief history</th>
+    <th>Extention</th>
+    <th>Lat</th>
+    <th>Lon</th>
+    <th>Alt</th>
+    <th>Perimeter</th>
+    <th>Geo location</th>
+    <th>Access routes</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @content_heritages.each do |content_heritage| %>
+  <tr>
+    <td><%= content_heritage.name %></td>
+    <td><%= content_heritage.description %></td>
+    <td><%= content_heritage.brief_history %></td>
+    <td><%= content_heritage.extention %></td>
+    <td><%= content_heritage.lat %></td>
+    <td><%= content_heritage.lon %></td>
+    <td><%= content_heritage.alt %></td>
+    <td><%= content_heritage.perimeter %></td>
+    <td><%= content_heritage.geo_location %></td>
+    <td><%= content_heritage.access_routes %></td>
+    <td><%= link_to 'Show', content_heritage %></td>
+    <td><%= link_to 'Edit', edit_content_heritage_path(content_heritage) %></td>
+    <td><%= link_to 'Destroy', content_heritage, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Heritage', new_content_heritage_path %>

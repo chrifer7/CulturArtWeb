@@ -1,0 +1,55 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @content_heritage.name %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @content_heritage.description %>
+</p>
+
+<p>
+  <b>Brief history:</b>
+  <%= @content_heritage.brief_history %>
+</p>
+
+<p>
+  <b>Extention:</b>
+  <%= @content_heritage.extention %>
+</p>
+
+<p>
+  <b>Lat:</b>
+  <%= @content_heritage.lat %>
+</p>
+
+<p>
+  <b>Lon:</b>
+  <%= @content_heritage.lon %>
+</p>
+
+<p>
+  <b>Alt:</b>
+  <%= @content_heritage.alt %>
+</p>
+
+<p>
+  <b>Perimeter:</b>
+  <%= @content_heritage.perimeter %>
+</p>
+
+<p>
+  <b>Geo location:</b>
+  <%= @content_heritage.geo_location %>
+</p>
+
+<p>
+  <b>Access routes:</b>
+  <%= @content_heritage.access_routes %>
+</p>
+
+
+<%= link_to 'Edit', edit_content_heritage_path(@content_heritage) %> |
+<%= link_to 'Back', content_heritages_path %>

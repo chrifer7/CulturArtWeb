@@ -26,17 +26,19 @@ defaults: &defaults
   encoding: utf8
   <<: *<%= ENV['RAILS_DB'] || "postgresql" %>
 
-# development:
-  # adapter: postgresql
-  # encoding: utf8
-  # database: culturart_development
-  # pool: 5
-  # username: culturart
-  # password: 5133264991
-    
+#Comentar y descomentar el bloque development segun convenga
 development:
-  <<: *defaults
+  adapter: postgresql
+  encoding: utf8
+  database: culturart_development
+  pool: 5
+  username: culturart
+  password: 5133264991
+    
+# development:
+  # <<: *defaults
 
+#NET START postgresql-x64-9.3
 test: &test
   <<: *defaults
 

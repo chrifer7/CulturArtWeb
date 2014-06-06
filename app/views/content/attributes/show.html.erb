@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @content_attribute.name %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @content_attribute.description %>
+</p>
+
+<p>
+  <b>Attribute type:</b>
+  <%= @content_attribute.attribute_type_id %>
+</p>
+
+<p>
+  <b>Data type:</b>
+  <%= @content_attribute.data_type_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_content_attribute_path(@content_attribute) %> |
+<%= link_to 'Back', content_attributes_path %>

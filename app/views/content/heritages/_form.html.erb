@@ -1,0 +1,57 @@
+<%= form_for(@content_heritage) do |f| %>
+  <% if @content_heritage.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@content_heritage.errors.count, "error") %> prohibited this content_heritage from being saved:</h2>
+
+      <ul>
+      <% @content_heritage.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :description %><br />
+    <%= f.text_area :description %>
+  </div>
+  <div class="field">
+    <%= f.label :brief_history %><br />
+    <%= f.text_area :brief_history %>
+  </div>
+  <div class="field">
+    <%= f.label :extention %><br />
+    <%= f.text_field :extention %>
+  </div>
+  <div class="field">
+    <%= f.label :lat %><br />
+    <%= f.text_field :lat %>
+  </div>
+  <div class="field">
+    <%= f.label :lon %><br />
+    <%= f.text_field :lon %>
+  </div>
+  <div class="field">
+    <%= f.label :alt %><br />
+    <%= f.text_field :alt %>
+  </div>
+  <div class="field">
+    <%= f.label :perimeter %><br />
+    <%= f.text_field :perimeter %>
+  </div>
+  <div class="field">
+    <%= f.label :geo_location %><br />
+    <%= f.text_area :geo_location %>
+  </div>
+  <div class="field">
+    <%= f.label :access_routes %><br />
+    <%= f.text_area :access_routes %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

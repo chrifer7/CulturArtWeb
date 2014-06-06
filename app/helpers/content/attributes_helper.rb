@@ -1,0 +1,2 @@
+module Content::AttributesHelper
+end

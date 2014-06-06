@@ -1,0 +1,25 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: MyString
+  history: MyText
+  url: MyString
+  lat_img: 1.5
+  lon_img: 1.5
+  alt_img: 1.5
+  lat_user: 1.5
+  lon_user: 1.5
+  alt_user: 1.5
+  heritage_id: 1
+
+two:
+  name: MyString
+  history: MyText
+  url: MyString
+  lat_img: 1.5
+  lon_img: 1.5
+  alt_img: 1.5
+  lat_user: 1.5
+  lon_user: 1.5
+  alt_user: 1.5
+  heritage_id: 1

@@ -1,0 +1,32 @@
+#AttributeType
+rails g scaffold content/AttributeType name description:text
+rails g migration add_column_deleted_to_content_AttributeType deleted:integer
+
+#DataType
+rails g scaffold content/DataType name ptype
+rails g migration add_column_deleted_to_content_DataType deleted:integer
+
+#Attribute
+rails g scaffold content/Attribute name description:text attribute_type_id:integer data_type_id:integer
+rails g migration add_column_deleted_to_content_Attribute deleted:integer
+
+#AttributeValue
+rails g scaffold content/AttributeValue attribute_id:integer name description:text icon
+rails g migration add_column_deleted_to_content_AttributeValue deleted:integer
+
+#Heritage
+rails g scaffold content/Heritage name description:text brief_history:text extention:float lat:decimal lon:decimal alt:float perimeter:float geo_location:text access_routes:text
+rails g migration add_column_deleted_to_content_Heritage deleted:integer
+
+#OverlayedImage
+rails g scaffold content/OverlayedImg name history:text url lat_img:decimal lon_img:decimal alt_img:float lat_user:decimal lon_user:decimal alt_user:float heritage_id:integer image_file_name:string image_content_type:string
+image_file_size:string image_updated_at:datetime
+rails g migration add_column_deleted_to_content_OverlayedImg deleted:integer
+
+#Document
+rails g scaffold content/Document name description:text url document_file_name:string document_content_type:string
+document_file_size:string document_updated_at:datetime heritage_id:integer document_type_id:integer deleted:integer
+
+#DocumentType
+rails g scaffold content/DocumentType name description:text icon:string icon_file_name:string icon_content_type:string
+icon_file_size:string icon_updated_at:datetime deleted:integer

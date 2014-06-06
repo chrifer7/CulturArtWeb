@@ -1,7 +1,55 @@
 RailsApp::Application.routes.draw do
+  namespace :content do
+    resources :documents
+  end
+
+
+  namespace :content do
+    resources :document_types
+  end
+
+
+  namespace :content do
+    resources :attribute_values
+  end
+
+
+  namespace :content do
+    resources :attributes
+  end
+
+
+  namespace :content do
+    resources :overlayed_imgs
+  end
+
+
+  namespace :content do
+    resources :heritages
+  end
+
+
+  namespace :content do
+    resources :attribute_types
+  end
+
+
+  namespace :content do
+    resources :data_types
+  end
+
+
+  root :to => 'pages#index'
+  
+  get "pages/index"
+  get "pages/about"
+  get "pages/contact"
+  get "pages/features"
+  get "pages/login"
+  get "pages/pricing"
+  get "pages/register"
+    
   resources :documents
-
-
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

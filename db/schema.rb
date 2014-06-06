@@ -11,15 +11,94 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140527072753) do
+ActiveRecord::Schema.define(:version => 20140606070605) do
 
-  create_table "documents", :force => true do |t|
+  create_table "content_attribute_types", :force => true do |t|
     t.string   "name"
     t.text     "description"
-    t.date     "created_on"
-    t.string   "tags"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+    t.integer  "deleted"
+  end
+
+  create_table "content_attribute_values", :force => true do |t|
+    t.integer  "attribute_id"
+    t.string   "name"
+    t.text     "description"
+    t.string   "icon"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+    t.integer  "deleted"
+  end
+
+  create_table "content_attributes", :force => true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.integer  "attribute_type_id"
+    t.integer  "data_type_id"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
+    t.integer  "deleted"
+  end
+
+  create_table "content_data_types", :force => true do |t|
+    t.string   "name"
+    t.string   "ptype"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.integer  "deleted"
+  end
+
+  create_table "content_document_types", :force => true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.string   "icon"
+    t.string   "icon_file_name"
+    t.string   "icon_content_type"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
+  end
+
+  create_table "content_documents", :force => true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.string   "url"
+    t.string   "document_file_name"
+    t.string   "document_content_type"
+    t.datetime "created_at",            :null => false
+    t.datetime "updated_at",            :null => false
+  end
+
+  create_table "content_heritages", :force => true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.text     "brief_history"
+    t.float    "extention"
+    t.float    "lat"
+    t.float    "lon"
+    t.float    "alt"
+    t.float    "perimeter"
+    t.text     "geo_location"
+    t.text     "access_routes"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+    t.integer  "deleted"
+  end
+
+  create_table "content_overlayed_imgs", :force => true do |t|
+    t.string   "name"
+    t.text     "history"
+    t.string   "url"
+    t.float    "lat_img"
+    t.float    "lon_img"
+    t.float    "alt_img"
+    t.float    "lat_user"
+    t.float    "lon_user"
+    t.float    "alt_user"
+    t.integer  "heritage_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+    t.integer  "deleted"
   end
 
 end

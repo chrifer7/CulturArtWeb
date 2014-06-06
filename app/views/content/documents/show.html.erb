@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @content_document.name %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @content_document.description %>
+</p>
+
+<p>
+  <b>Url:</b>
+  <%= @content_document.url %>
+</p>
+
+<p>
+  <b>Document file name:</b>
+  <%= @content_document.document_file_name %>
+</p>
+
+<p>
+  <b>Document content type:</b>
+  <%= @content_document.document_content_type %>
+</p>
+
+
+<%= link_to 'Edit', edit_content_document_path(@content_document) %> |
+<%= link_to 'Back', content_documents_path %>

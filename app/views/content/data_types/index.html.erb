@@ -1,0 +1,25 @@
+<h1>Listing content_data_types</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Ptype</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @content_data_types.each do |content_data_type| %>
+  <tr>
+    <td><%= content_data_type.name %></td>
+    <td><%= content_data_type.ptype %></td>
+    <td><%= link_to 'Show', content_data_type %></td>
+    <td><%= link_to 'Edit', edit_content_data_type_path(content_data_type) %></td>
+    <td><%= link_to 'Destroy', content_data_type, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Data type', new_content_data_type_path %>

@@ -9,5 +9,12 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require_self
+ *= require bootstrap
+ *- require bootstrap_responsive
+ *= require font
+ *= require font-awesome
+ *= require base
+ *= require blue
+ *= require style
  *= require_tree .
  */
