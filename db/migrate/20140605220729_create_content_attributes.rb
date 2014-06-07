@@ -1,5 +1,5 @@
 class CreateContentAttributes < ActiveRecord::Migration
-  def change
+  def self.up
     create_table :content_attributes do |t|
       t.string :name
       t.text :description
@@ -8,5 +8,9 @@ class CreateContentAttributes < ActiveRecord::Migration
 
       t.timestamps
     end
+  end
+  
+  def self.down
+    drop_table :content_attributes
   end
 end

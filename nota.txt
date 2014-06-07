@@ -1,6 +1,6 @@
 https://bitbucket.org/Miguelos/rails-example/src
 Create Ruby 1.9 app
-Añadir cartucho postgresql
+Aï¿½adir cartucho postgresql
 Setear origin openshift
 Commit
 Push
@@ -27,3 +27,7 @@ http://www.hostatic.ro/2011/09/29/pushing-to-two-git-remote-origins-from-one-rep
 dan@bart ~/XML-to-text-Tomboy $ git remote add backup user@server:/path/to/git/XML-to-text-Tomboy.git
 dan@bart ~/XML-to-text-Tomboy $ git push backup master:master
 
+----
+#Rastrear errores
+
+rhc tail -a culturartweb

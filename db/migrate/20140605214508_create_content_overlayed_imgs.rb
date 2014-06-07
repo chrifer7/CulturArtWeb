@@ -1,5 +1,5 @@
 class CreateContentOverlayedImgs < ActiveRecord::Migration
-  def change
+  def self.up
     create_table :content_overlayed_imgs do |t|
       t.string :name
       t.text :history
@@ -14,5 +14,9 @@ class CreateContentOverlayedImgs < ActiveRecord::Migration
 
       t.timestamps
     end
+  end
+  
+  def self.down
+    drop_table :content_overlayed_imgs
   end
 end

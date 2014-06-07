@@ -26,6 +26,8 @@ class Content::HeritagesController < ApplicationController
   def new
     @content_heritage = Content::Heritage.new
     
+    @attributes = Content::Attribute.all
+    
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @content_heritage }

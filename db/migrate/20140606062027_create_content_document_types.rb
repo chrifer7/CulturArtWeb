@@ -1,5 +1,5 @@
 class CreateContentDocumentTypes < ActiveRecord::Migration
-  def change
+  def self.up
     create_table :content_document_types do |t|
       t.string :name
       t.text :description
@@ -9,5 +9,9 @@ class CreateContentDocumentTypes < ActiveRecord::Migration
 
       t.timestamps
     end
+  end
+  
+  def self.down
+    drop_table :content_document_types
   end
 end

@@ -1,5 +1,5 @@
 class CreateContentHeritages < ActiveRecord::Migration
-  def change
+  def self.up
     create_table :content_heritages do |t|
       t.string :name
       t.text :description
@@ -14,5 +14,9 @@ class CreateContentHeritages < ActiveRecord::Migration
 
       t.timestamps
     end
+  end
+  
+  def self.down
+    drop_table :content_heritages
   end
 end

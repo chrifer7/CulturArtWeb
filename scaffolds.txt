@@ -30,3 +30,12 @@ document_file_size:string document_updated_at:datetime heritage_id:integer docum
 #DocumentType
 rails g scaffold content/DocumentType name description:text icon:string icon_file_name:string icon_content_type:string
 icon_file_size:string icon_updated_at:datetime deleted:integer
+
+#Join Table -> crea un migration en blanco
+rails g migration create_content_heritages_content_attributes_table
+content_heritages_content_attributes
+#http://guides.rubyonrails.org/association_basics.html
+#no funka # http://stackoverflow.com/questions/6561330/rails-3-has-and-belongs-to-many-migration
+#no funka # http://jonathanhui.com/ruby-rails-3-model-many-many-association
+
+
