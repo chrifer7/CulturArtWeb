@@ -15,7 +15,9 @@ RailsApp::Application.configure do
   config.assets.compress = true
 
   # Don't fallback to assets pipeline if a precompiled asset is missed
-  config.assets.compile = false
+  config.assets.compile = true #for the error: rails 3.1.0 ActionView::Template::Error (bootstrap.css isn't precompiled)
+  #http://stackoverflow.com/questions/7275636/rails-3-1-0-actionviewtemplateerror-application-css-isnt-precompiled
+
 
   # Generate digests for assets URLs
   config.assets.digest = true
