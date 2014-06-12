@@ -164,15 +164,15 @@ class Content::HeritagesController < ApplicationController
       @rad = 10
     end
     
-    @content_heritages = Content::Heritage.all#[]
-    # if !@lat.blank? && !@lon.blank?
-      # @content_heritages = Content::Heritage.find(
-          # :all,
-          # :conditions=> [
-#             
-          # ]
-        # )
-    # end
+    @content_heritages = Content::Heritage.all
+    
+    if !@lat.blank? && !@lon.blank?
+      @content_heritages.each do |heritage|
+        if heritage.distance @lat, @lon > @rad
+          @content_heritages.delete heritage
+        end
+      end
+    end
 
     respond_to do |format|
       format.html # find.html.erb
