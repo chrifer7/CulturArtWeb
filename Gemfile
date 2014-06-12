@@ -51,3 +51,5 @@ gem 'jquery-rails'
 # gem 'debugger'
 
 #Gemas añadidas al proyecto:
+gem 'devise'
+gem 'paperclip'
