@@ -10,10 +10,10 @@ gem 'rack', '~> 1.4.5'
 #  gem 'mysql2'
 #end
 
-group :production, :postgresql do
+# group :production, :postgresql do
   gem 'pg'
   gem 'activerecord-postgresql-adapter'
-end
+# end
 
 group :development, :test do
   gem 'sqlite3'
