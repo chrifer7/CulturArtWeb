@@ -12,11 +12,11 @@
 
 postgresql: &postgresql
   adapter: postgresql
-  database: <%=ENV['OPENSHIFT_APP_NAME']%>
-  username: <%=ENV['OPENSHIFT_POSTGRESQL_DB_USERNAME']%>
-  password: <%=ENV['OPENSHIFT_POSTGRESQL_DB_PASSWORD']%>
-  host:     <%=ENV['OPENSHIFT_POSTGRESQL_DB_HOST']%>
-  port:     <%=ENV['OPENSHIFT_POSTGRESQL_DB_PORT']%>
+  database: <%=ENV['OPENSHIFT_APP_NAME'] || 'culturartweb' %>
+  username: <%=ENV['OPENSHIFT_POSTGRESQL_DB_USERNAME'] || 'admindm2b4yw' %>
+  password: <%=ENV['OPENSHIFT_POSTGRESQL_DB_PASSWORD'] || 'tujwgJbhwkdz' %>
+  host:     <%=ENV['OPENSHIFT_POSTGRESQL_DB_HOST'] || '127.0.0.1' %>
+  port:     <%=ENV['OPENSHIFT_POSTGRESQL_DB_PORT'] || '5433' %>
   min_messages: ERROR
   reconnect: false
 
@@ -40,8 +40,8 @@ development:
   <<: *defaults
 
 # #NET START postgresql-x64-9.3
-# test: &test
-  # <<: *defaults
+test: &test
+  <<: *defaults
 
 production:
   <<: *defaults

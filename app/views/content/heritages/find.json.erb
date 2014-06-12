@@ -1,0 +1,133 @@
+{"puntos":[
+  <%
+  @i = 0 #contador para ver si se agrega la coma al final o no 
+  @length = heritages.length
+  
+  heritages.each do |heritage| %>
+  {
+	"id":<%=heritage.id%>,
+	"nombre":"<%=heritage.name%>",
+	"descripcion":"<%=heritage.description%>",
+	"historia_breve":"Una historia breve sobre el camino del Inca",
+	"extension":500.123,
+	"tipo_crono":1,
+	"tipo_morfo":1,
+	"epoca":1,
+	"cultura":1,
+	"lat":-12.067412,
+	"lon":-77.080974,
+	"alt":0,
+	"perimetro":999.92,
+	"ubica_geo":"Se encuentra cerca a la playa dentro de la PUCP",
+	"ubica_politica":{
+		"id":"110101",
+		"dep":"Lima",
+		"prov":"Lima",
+		"dist":"Cercado de Lima"
+		},
+	"medios_acceso":"Se accede a trav\u00e9s de la puerta principal, la de ciencias o la de riva aguero",
+	"img_superpuesta":1,
+	"qr_img_sup":"https:\/\/chart.googleapis.com\/chart?chs=300x300\u0026cht=qr\u0026chl=http:\/\/culturart-pucp.rhcloud.com\/public\/content\/imgsuperpuesta\/view\/1\u0026choe=UTF-8",
+	"list_autor":[
+		{
+			"id":1,
+			"nombre":"Pablito Picazzo",
+			"descripcion":"Gran pintor"
+		}
+	],
+	"list_mat_construc":[
+		{
+			"id":1,
+			"nombre":"Piedra",
+			"descripcion":"S\u00f3lo eso: una piedra"
+		},
+		{
+			"id":2,
+			"nombre":"Madera",
+			"descripcion":"S\u00f3lo eso: madera"
+		}
+	],
+	"list_afecta_natur":[
+		{
+			"id":1,
+			"nombre":"Erosi\u00f3n",
+			"descripcion":"Da\u00f1o irreparable"
+		}
+	],
+	"list_afecta_antro":[
+		{
+			"id":1,
+			"nombre":"Pinta por grafitti",
+			"descripcion":"Da\u00f1o irreparable"
+		},
+		{
+			"id":2,
+			"nombre":"Cartel publicitario",
+			"descripcion":"Da\u00f1o grave"
+		}
+	],
+	"list_imagen":[
+		{
+			"id":3,
+			"nombre":"Huaca 3",
+			"descripcion":"La Huaca 3",
+			"url":"http:\/\/culturart-pucp.rhcloud.com\/public\/images\/_pat\/3.jpg"
+		},
+		{
+			"id":2,
+			"nombre":"Huaca 2",
+			"descripcion":"La Huaca 2",
+			"url":"http:\/\/culturart-pucp.rhcloud.com\/public\/images\/_pat\/2.jpg"
+		},
+		{
+			"id":1,
+			"nombre":"Huaca 1",
+			"descripcion":"La Huaca 1",
+			"url":"http:\/\/culturart-pucp.rhcloud.com\/public\/images\/_pat\/1.jpg"
+		}
+	],
+	"list_videos":[
+		{
+			"id":2,
+			"nombre":"El otro video",
+			"descripcion":"El otro video en youtube",
+			"url":"http:\/\/youtu.be\/1JT_zWNQNbU"
+		},
+		{
+			"id":1,
+			"nombre":"El video",
+			"descripcion":"El video en youtube",
+			"url":"http:\/\/youtu.be\/Q0W8wzU0B5U"
+		}
+	],
+	"list_docs":[
+		{
+			"id":2,
+			"nombre":"Otro paper",
+			"descripcion":"Otra investigaci\u00f3n del lugar",
+			"url":"http:\/\/culturart-pucp.rhcloud.com\/public\/docs\/_pat\/2.pdf"
+		},
+		{
+			"id":1,
+			"nombre":"Un paper",
+			"descripcion":"Una investigaci\u00f3n del lugar",
+			"url":"http:\/\/culturart-pucp.rhcloud.com\/public\/docs\/_pat\/1.pdf"
+		}
+	],
+	"list_reconocim":[
+		{
+			"id":2,
+			"nombre":"Patrimonio de la Humanidad",
+			"descripcion":"Reconocimiento que se le da a nivel mundial"
+		}]
+	}
+  <%
+  @i = @i + 1
+  if @i < @length %>
+    <%=","%>
+  <%	
+  end
+   
+  end %>
+  ]
+}

@@ -19,8 +19,8 @@ class Content::Heritage < ActiveRecord::Base
     logger.info "p: "+plat.to_s+" - "+plon.to_s
     logger.info "h: "+lat.to_s+" - "+lon.to_s
     
-    dlon_rad = (plon - lat) * rad_per_deg  # Delta, converted to rad
-    dlat_rad = (plat - lon) * rad_per_deg
+    dlon_rad = (plon-lon) * rad_per_deg  # Delta, converted to rad
+    dlat_rad = (plat-lat) * rad_per_deg
   
     lat1_rad, lon1_rad = [lat, lon].map! {|i| i * rad_per_deg }
     lat2_rad, lon2_rad = [plat,plon].map! {|i| i * rad_per_deg }

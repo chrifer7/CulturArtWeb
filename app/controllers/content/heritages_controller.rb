@@ -163,21 +163,40 @@ class Content::HeritagesController < ApplicationController
     if @rad.blank? || @rad < 0 || @rad > 20
       @rad = 10
     end
+    @rad = 70000 #para hacer unas pruebas
+    logger.info "lat: "+@lat.to_s
+    logger.info "lon: "+@lon.to_s
     
     @content_heritages = Content::Heritage.all
     
+    #si tenemos una lon y lat
     if !@lat.blank? && !@lon.blank?
+      #recorreo todos los patrimonios
       @content_heritages.each do |heritage|
-        if heritage.distance @lat, @lon > @rad
+        #obten la distancia
+        @d = heritage.distance(@lat, @lon)
+        
+        logger.info "distance: "+@d.to_s
+        logger.info "radio: "+@rad.to_s
+        #si la distancia está fuera del radio
+        if @d > @rad
+          #elimina el patrimonio
           @content_heritages.delete heritage
         end
       end
     end
 
-    respond_to do |format|
-      format.html # find.html.erb
-      format.json { render json: @content_heritages }
-    end
+    render :file => "content/heritages/find.json.erb", :content_type => 'application/json', :locals => { :heritages => @content_heritages }
+    
+    # respond_to do |format|
+      # format.html # find.html.erb
+      # format.json { render json: @content_heritages }
+    # end
   end
-  
+  # {
+    # filed1: <%= @some_var %>,
+    # field2: <%= @another_var %>,
+    # fieldN: <%= @yet_another_var %>,
+    # data: <%= @some_data.to_json.html_safe %>
+  # }
 end

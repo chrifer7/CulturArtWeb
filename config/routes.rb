@@ -28,10 +28,11 @@ RailsApp::Application.routes.draw do
     resources :heritages
   end
   
-  get 'content/heritage_fields/frm_extra' => 'content/heritages#form_extra_fields'
-  post 'content/heritage_fields/save_extra' => 'content/heritages#save_extra_fields'
+  get 'content/heritage_fields/frm_extra', to: 'content/heritages#form_extra_fields'
+  post 'content/heritage_fields/save_extra', to: 'content/heritages#save_extra_fields'
   
-  get 'content/heritages/find/:lat/:lon/:rad' => 'content/heritages#find'
+  get 'content/heritages/find/:lat/:lon/:rad', to: 'content/heritages#find', 
+      constraints: { lat: /[^\/]+/, lon: /[^\/]+/ }
   
   namespace :content do
     resources :attribute_types
