@@ -31,3 +31,9 @@ dan@bart ~/XML-to-text-Tomboy $ git push backup master:master
 #Rastrear errores
 rhc tail -a culturartweb
 
+----
+
+config.assets.compile = false #for the error: rails 3.1.0 ActionView::Template::Error (bootstrap.css isn't precompiled)
+  # http://stackoverflow.com/questions/7275636/rails-3-1-0-actionviewtemplateerror-application-css-isnt-precompiled
+  #bundle exec rake assets:precompile
+
