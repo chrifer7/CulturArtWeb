@@ -6,4 +6,3 @@ RailsApp::Application.initialize!
 
 # ENV['RAILS_ENV'] = 'development'
 ENV['RAILS_ENV'] = 'production' 
-
