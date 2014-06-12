@@ -3,6 +3,7 @@
 <table>
   <tr>
     <th>Name</th>
+    <th>Slug</th>
     <th>Description</th>
     <th>Attribute type</th>
     <th>Data type</th>
@@ -14,6 +15,7 @@
 <% @content_attributes.each do |content_attribute| %>
   <tr>
     <td><%= content_attribute.name %></td>
+    <td><%= content_attribute.slug %></td>
     <td><%= content_attribute.description %></td>
     <td><%= content_attribute.attribute_type_id %></td>
     <td><%= content_attribute.data_type_id %></td>

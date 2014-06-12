@@ -1,6 +1,7 @@
 <h1>Editing content_heritage</h1>
 
 <%= render 'form' %>
+<%= render :partial =>"frm_extra", :locals => { :heritage => @content_heritage } %>
 
 <%= link_to 'Show', @content_heritage %> |
 <%= link_to 'Back', content_heritages_path %>

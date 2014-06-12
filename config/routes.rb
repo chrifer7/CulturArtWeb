@@ -27,8 +27,12 @@ RailsApp::Application.routes.draw do
   namespace :content do
     resources :heritages
   end
-
-
+  
+  get 'content/heritage_fields/frm_extra' => 'content/heritages#form_extra_fields'
+  post 'content/heritage_fields/save_extra' => 'content/heritages#save_extra_fields'
+  
+  get 'content/heritages/find/:lat/:lon/:rad' => 'content/heritages#find'
+  
   namespace :content do
     resources :attribute_types
   end
@@ -106,4 +110,14 @@ RailsApp::Application.routes.draw do
   # This is a legacy wild controller route that's not recommended for RESTful applications.
   # Note: This route will make all actions in every controller accessible via GET requests.
   # match ':controller(/:action(/:id))(.:format)'
+  
+  
+  #match 'heritages' => 'heritages#save_extra_fields', :via => :post
+  # match 'content/heritages/:id/save_extra_fields/:id' => 'content/heritages#save_extra_fields'#, :constraints => { :only_ajax => true }
+  # match ':Content::HeritagesController/:save_extra_fields' => 'content/heritages#save_extra_fields'#, :constraints => { :only_ajax => true }
+  
+  
+  
+  
+  
 end

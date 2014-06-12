@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140607010704) do
+ActiveRecord::Schema.define(:version => 20140611234515) do
 
   create_table "content_attribute_types", :force => true do |t|
     t.string   "name"
@@ -39,6 +39,7 @@ ActiveRecord::Schema.define(:version => 20140607010704) do
     t.datetime "created_at",        :null => false
     t.datetime "updated_at",        :null => false
     t.integer  "deleted"
+    t.string   "slug"
   end
 
   create_table "content_data_types", :force => true do |t|
@@ -74,8 +75,8 @@ ActiveRecord::Schema.define(:version => 20140607010704) do
     t.text     "description"
     t.text     "brief_history"
     t.float    "extention"
-    t.float    "lat"
-    t.float    "lon"
+    t.decimal  "lat"
+    t.decimal  "lon"
     t.float    "alt"
     t.float    "perimeter"
     t.text     "geo_location"
@@ -85,20 +86,23 @@ ActiveRecord::Schema.define(:version => 20140607010704) do
     t.integer  "deleted"
   end
 
-  create_table "content_heritages_content_attributes", :id => false, :force => true do |t|
-    t.integer "content_heritage_id"
-    t.integer "content_attribute_id"
+  create_table "content_heritages_attributes", :id => false, :force => true do |t|
+    t.integer  "content_heritage_id"
+    t.integer  "content_attribute_id"
+    t.text     "value"
+    t.datetime "created_at",           :null => false
+    t.datetime "updated_at",           :null => false
   end
 
   create_table "content_overlayed_imgs", :force => true do |t|
     t.string   "name"
     t.text     "history"
     t.string   "url"
-    t.float    "lat_img"
-    t.float    "lon_img"
+    t.decimal  "lat_img"
+    t.decimal  "lon_img"
     t.float    "alt_img"
-    t.float    "lat_user"
-    t.float    "lon_user"
+    t.decimal  "lat_user"
+    t.decimal  "lon_user"
     t.float    "alt_user"
     t.integer  "heritage_id"
     t.datetime "created_at",  :null => false

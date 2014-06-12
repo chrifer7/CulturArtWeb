@@ -29,5 +29,5 @@ dan@bart ~/XML-to-text-Tomboy $ git push backup master:master
 
 ----
 #Rastrear errores
-
 rhc tail -a culturartweb
+

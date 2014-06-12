@@ -47,6 +47,8 @@ class Content::AttributesController < ApplicationController
   # POST /content/attributes.json
   def create
     @content_attribute = Content::Attribute.new(params[:content_attribute])
+    
+    @content_attribute.slug = @content_attribute.name.parameterize
 
     respond_to do |format|
       if @content_attribute.save
@@ -63,6 +65,8 @@ class Content::AttributesController < ApplicationController
   # PUT /content/attributes/1.json
   def update
     @content_attribute = Content::Attribute.find(params[:id])
+    
+    @content_attribute.slug = @content_attribute.name.parameterize
     
     respond_to do |format|
       if @content_attribute.update_attributes(params[:content_attribute])
