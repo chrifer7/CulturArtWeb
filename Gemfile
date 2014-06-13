@@ -11,7 +11,7 @@ gem 'rack', '~> 1.4.5'
 #end
 
 
-gem 'pg'
+gem 'pg', '>= 0.17.1'
 gem 'activerecord-postgresql-adapter'
 
 # group :production, :postgresql do
