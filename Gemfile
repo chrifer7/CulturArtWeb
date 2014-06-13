@@ -10,15 +10,21 @@ gem 'rack', '~> 1.4.5'
 #  gem 'mysql2'
 #end
 
-group :production, :postgresql do
-  gem 'pg'
-  gem 'activerecord-postgresql-adapter'
-end
+
+gem 'pg'
+gem 'activerecord-postgresql-adapter'
+
+# group :production, :postgresql do
+  # gem 'pg'
+  # gem 'activerecord-postgresql-adapter'
+# end
 
 group :development, :test do
-  gem 'sqlite3'
+  # gem 'sqlite3'
   gem 'minitest'
   gem 'thor', '= 0.14.6'  
+  
+  gem 'thin'
 end
 
 # Gems used only for assets and not required

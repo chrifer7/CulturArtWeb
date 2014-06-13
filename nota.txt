@@ -40,3 +40,7 @@ config.assets.compile = false #for the error: rails 3.1.0 ActionView::Template::
   # http://stackoverflow.com/questions/7275636/rails-3-1-0-actionviewtemplateerror-application-css-isnt-precompiled
   #bundle exec rake assets:precompile
 
+----
+thin server
+
+bundle exec thin start
