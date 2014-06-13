@@ -38,11 +38,24 @@ rhc tail -a culturartweb
 
 config.assets.compile = false #for the error: rails 3.1.0 ActionView::Template::Error (bootstrap.css isn't precompiled)
   # http://stackoverflow.com/questions/7275636/rails-3-1-0-actionviewtemplateerror-application-css-isnt-precompiled
-  #bundle exec rake assets:precompile
+
+bundle exec rake assets:precompile
 
 rake assets:precompile --trace RAILS_ENV=production
 ----
 thin server
 
 bundle exec thin start
-bundle install --no-deployment
+----
+Gemfile:
+Sacar del grupo production postgresql
+	gem 'pg', '>= 0.17.1'
+	gem 'activerecord-postgresql-adapter'
+	gem 'thread_safe', '= 0.3.3'
+	
+En el servidor:
+	bundle install --no-deployment
+	rm Gemfile.lock
+
+
+	
