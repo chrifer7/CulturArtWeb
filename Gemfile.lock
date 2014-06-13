@@ -136,4 +136,5 @@ DEPENDENCIES
   rails (~> 3.2.16)
   sass-rails
   thor (= 0.14.6)
+  thread_safe (= 0.3.3)
   uglifier (>= 1.0.3)

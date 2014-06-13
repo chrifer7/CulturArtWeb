@@ -13,7 +13,7 @@ gem 'rack', '~> 1.4.5'
 
 gem 'pg', '>= 0.17.1'
 gem 'activerecord-postgresql-adapter'
-gem 'thread_safe-0.3.3 (>= 0) x86-mingw32'
+gem 'thread_safe', '= 0.3.3'
 
 # group :production, :postgresql do
   # gem 'pg'
