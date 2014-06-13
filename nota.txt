@@ -45,3 +45,4 @@ rake assets:precompile --trace RAILS_ENV=production
 thin server
 
 bundle exec thin start
+bundle install --no-deployment
