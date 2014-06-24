@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140611181202) do
+ActiveRecord::Schema.define(:version => 20140620210253) do
 
   create_table "content_attribute_types", :force => true do |t|
     t.string   "name"
@@ -105,9 +105,13 @@ ActiveRecord::Schema.define(:version => 20140611181202) do
     t.decimal  "lon_user"
     t.float    "alt_user"
     t.integer  "heritage_id"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",          :null => false
+    t.datetime "updated_at",          :null => false
     t.integer  "deleted"
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
   end
 
 end

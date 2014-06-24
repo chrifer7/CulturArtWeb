@@ -12,6 +12,7 @@
     <th>Lon user</th>
     <th>Alt user</th>
     <th>Heritage</th>
+    <th>Avatar</th>
     <th></th>
     <th></th>
     <th></th>
@@ -29,6 +30,8 @@
     <td><%= content_overlayed_img.lon_user %></td>
     <td><%= content_overlayed_img.alt_user %></td>
     <td><%= content_overlayed_img.heritage_id %></td>
+    <td><%= image_tag content_overlayed_img.avatar.url %></td>
+    <!-- <td><%= image_tag content_overlayed_img.avatar.url(:thumb) %></td> -->
     <td><%= link_to 'Show', content_overlayed_img %></td>
     <td><%= link_to 'Edit', edit_content_overlayed_img_path(content_overlayed_img) %></td>
     <td><%= link_to 'Destroy', content_overlayed_img, method: :delete, data: { confirm: 'Are you sure?' } %></td>

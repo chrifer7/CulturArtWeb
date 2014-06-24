@@ -1,4 +1,4 @@
-<%= form_for(@content_overlayed_img) do |f| %>
+<%= form_for(@content_overlayed_img, :html => { :multipart => true }) do |f| %>
   <% if @content_overlayed_img.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@content_overlayed_img.errors.count, "error") %> prohibited this content_overlayed_img from being saved:</h2>
@@ -18,6 +18,10 @@
   <div class="field">
     <%= f.label :history %><br />
     <%= f.text_area :history %>
+  </div>
+  <div class="field">
+    <%= f.label :avatar %><br>
+    <%= f.file_field :avatar %>
   </div>
   <div class="field">
     <%= f.label :url %><br />

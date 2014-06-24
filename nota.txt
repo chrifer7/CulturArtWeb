@@ -57,5 +57,9 @@ En el servidor:
 	bundle install --no-deployment
 	rm Gemfile.lock
 
-
+Finalmente en production.rb:
+	config.assets.compile = true
 	
+----
+
+rails c test

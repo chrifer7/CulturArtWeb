@@ -58,5 +58,12 @@ module RailsApp
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
+    
+    #Paperclip CF
+    Paperclip.options[:whiny_thumbnails] = true
+    Paperclip.options[:log] = true
+    Paperclip.options[:log_command] = true
+
+    
   end
 end
