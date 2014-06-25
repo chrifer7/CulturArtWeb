@@ -7,8 +7,8 @@ class Content::Heritage < ActiveRecord::Base
   
   has_and_belongs_to_many :attribute_values #many to many con arrtibutes values
   
-  has_many :list_heritage_attributes, :class_name => 'Content::HeritageAttribute', :foreign_key => 'content_heritage_id'
-  has_many :list_attributes, through: :list_heritage_attributes
+  has_many :list_heritages_attributes, :class_name => 'Content::HeritagesAttributes', :foreign_key => 'content_heritage_id'
+  has_many :list_attributes, through: :list_heritages_attributes
   
   
   def distance plat, plon
@@ -17,7 +17,7 @@ class Content::Heritage < ActiveRecord::Base
     rm = rkm * 1000             # Radius in meters
     
     logger.info "p: "+plat.to_s+" - "+plon.to_s
-    logger.info "h: "+lat.to_s+" - "+lon.to_s
+    logger.info "h: "+self.lat.to_s+" - "+self.lon.to_s
     
     dlon_rad = (plon-lon) * rad_per_deg  # Delta, converted to rad
     dlat_rad = (plat-lat) * rad_per_deg

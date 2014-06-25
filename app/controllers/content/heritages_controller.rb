@@ -104,9 +104,10 @@ class Content::HeritagesController < ApplicationController
     
     @heritage_attributes = [] #Defino una lista vacía de atributos
     @attributes.each do |attribute|
-      logger.info "Slug: "+attribute.slug+" = "+params[attribute.slug]+" blanko? "+(!params[attribute.slug].blank?).to_s
+      logger.info "Slug: "+attribute.slug+" = "+params[attribute.slug]+", blanko? "+(!params[attribute.slug].blank?).to_s
       if !params[attribute.slug].blank? #Para cada atributo que contiene datos
-        @content_heritage.list_heritage_attributes.create()
+        logger.info "heritage: "+@content_heritage.name
+        logger.info "size: "+@content_heritage.list_attributes.create()
         logger.info @content_heritage
         # @heritage_attribute.list_heritage_attributes.find()
       end
@@ -163,7 +164,7 @@ class Content::HeritagesController < ApplicationController
     if @rad.blank? || @rad < 0 || @rad > 20
       @rad = 10
     end
-    @rad = 70000 #para hacer unas pruebas
+    # @rad = 70000 #para hacer unas pruebas
     logger.info "lat: "+@lat.to_s
     logger.info "lon: "+@lon.to_s
     

@@ -2,30 +2,30 @@
   <%
   @i = 0 #contador para ver si se agrega la coma al final o no 
   @length = heritages.length
-  
+    
   heritages.each do |heritage| %>
   {
 	"id":<%=heritage.id%>,
 	"nombre":"<%=heritage.name%>",
 	"descripcion":"<%=heritage.description%>",
-	"historia_breve":"Una historia breve sobre el camino del Inca",
-	"extension":500.123,
+	"historia_breve":"<%=heritage.brief_history%>",
+	"extension":<%=heritage.extention%>,
+	"lat":<%=heritage.lat%>,
+	"lon":<%=heritage.lon%>,
+	"alt":<%=heritage.alt%>,
+	"perimetro":<%=heritage.perimeter%>,
+	"ubica_geo":"<%=heritage.geo_location%>",
+	"medios_acceso":"<%=heritage.access_routes%>",
 	"tipo_crono":1,
 	"tipo_morfo":1,
 	"epoca":1,
-	"cultura":1,
-	"lat":-12.067412,
-	"lon":-77.080974,
-	"alt":0,
-	"perimetro":999.92,
-	"ubica_geo":"Se encuentra cerca a la playa dentro de la PUCP",
+	"cultura":1,	
 	"ubica_politica":{
 		"id":"110101",
 		"dep":"Lima",
 		"prov":"Lima",
 		"dist":"Cercado de Lima"
-		},
-	"medios_acceso":"Se accede a trav\u00e9s de la puerta principal, la de ciencias o la de riva aguero",
+		},	
 	"img_superpuesta":1,
 	"qr_img_sup":"https:\/\/chart.googleapis.com\/chart?chs=300x300\u0026cht=qr\u0026chl=http:\/\/culturart-pucp.rhcloud.com\/public\/content\/imgsuperpuesta\/view\/1\u0026choe=UTF-8",
 	"list_autor":[
