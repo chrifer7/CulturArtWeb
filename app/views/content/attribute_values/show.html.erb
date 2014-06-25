@@ -2,7 +2,10 @@
 
 <p>
   <b>Attribute:</b>
-  <%= @content_attribute_value.attribute_id %>
+  <!-- <%= Content::Attribute.find(@content_attribute_value.attribute_id).name %> -->
+  <% @attr = Content::Attribute.find(@content_attribute_value.attribute_id) %>
+  <!-- <%= link_to @attr.name, @attr %> -->
+  <%= @attr.name %>
 </p>
 
 <p>

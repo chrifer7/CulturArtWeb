@@ -63,3 +63,14 @@ Finalmente en production.rb:
 ----
 
 rails c test
+
+----
+utf-8 y caracteres & para formato html
+
+http://stackoverflow.com/questions/1600526/how-do-i-encode-decode-html-entities-in-ruby
+https://www.ruby-forum.com/topic/218320
+
+------
+root
+"url":<%=root_url(:only_path => false)+img_sup.avatar.url%>,
+content_overlayed_img_path(heritage.list_overlayed_imgs[0].id, :only_path => false)

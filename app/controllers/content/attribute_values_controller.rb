@@ -26,6 +26,8 @@ class Content::AttributeValuesController < ApplicationController
   def new
     @content_attribute_value = Content::AttributeValue.new
 
+    @content_attributes = Content::Attribute.all
+    
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @content_attribute_value }
@@ -35,6 +37,8 @@ class Content::AttributeValuesController < ApplicationController
   # GET /content/attribute_values/1/edit
   def edit
     @content_attribute_value = Content::AttributeValue.find(params[:id])
+    
+    @content_attributes = Content::Attribute.all
   end
 
   # POST /content/attribute_values

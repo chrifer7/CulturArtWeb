@@ -37,6 +37,8 @@ class Content::OverlayedImgsController < ApplicationController
   # GET /content/overlayed_imgs/1/edit
   def edit
     @content_overlayed_img = Content::OverlayedImg.find(params[:id])
+    
+    @heritages = Content::Heritage.all
   end
 
   # POST /content/overlayed_imgs
@@ -82,4 +84,12 @@ class Content::OverlayedImgsController < ApplicationController
       format.json { head :no_content }
     end
   end
+    
+  # View para el Json
+  def view
+    @content_overlayed_img = Content::OverlayedImg.find(params[:id])
+    
+    render :file => "content/overlayed_imgs/view.json.erb", :content_type => 'application/json', :locals => { :img_sup => @content_overlayed_img }    
+  end
 end
+

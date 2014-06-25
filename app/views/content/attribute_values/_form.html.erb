@@ -13,7 +13,15 @@
 
   <div class="field">
     <%= f.label :attribute_id %><br />
-    <%= f.number_field :attribute_id %>
+    <%= 
+    	if @content_attributes.blank?
+    		@content_attributes = []
+    	end
+    	
+    	f.select :attribute_id, @content_attributes.collect { |t| [t.name, t.id]}, {:include_blank=>"Seleccione"}, {:class => 'combobox'}
+    	
+    	#f.number_field :attribute_id 
+    %>    
   </div>
   <div class="field">
     <%= f.label :name %><br />

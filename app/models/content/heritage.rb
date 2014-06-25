@@ -3,7 +3,7 @@ class Content::Heritage < ActiveRecord::Base
   
   validates :name, presence: true
   
-  has_many :list_overlayed_imgs, :class_name => 'Content::OverlayImg', :foreign_key => 'heritage_id'
+  has_many :list_overlayed_imgs, :class_name => 'Content::OverlayedImg', :foreign_key => 'heritage_id'
   
   has_and_belongs_to_many :attribute_values #many to many con arrtibutes values
   

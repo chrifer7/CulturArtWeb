@@ -8,5 +8,5 @@ class Content::OverlayedImg < ActiveRecord::Base
                     # }
   validates :name, presence: true
   
-  belongs_to :obj_collection, :class_name => 'Content::Heritage', :foreign_key => 'heritage_id'
+  belongs_to :obj_heritage, :class_name => 'Content::Heritage', :foreign_key => 'heritage_id'
 end

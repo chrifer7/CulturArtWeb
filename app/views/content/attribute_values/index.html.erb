@@ -13,7 +13,10 @@
 
 <% @content_attribute_values.each do |content_attribute_value| %>
   <tr>
-    <td><%= content_attribute_value.attribute_id %></td>
+    <!-- <td><%= Content::Attribute.find(content_attribute_value.attribute_id).name %></td> -->
+    <% @attr = Content::Attribute.find(content_attribute_value.attribute_id)
+    %>
+    <td><%= link_to @attr.name, @attr %></td>
     <td><%= content_attribute_value.name %></td>
     <td><%= content_attribute_value.description %></td>
     <td><%= content_attribute_value.icon %></td>
