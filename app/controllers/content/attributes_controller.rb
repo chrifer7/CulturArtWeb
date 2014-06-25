@@ -90,4 +90,14 @@ class Content::AttributesController < ApplicationController
       format.json { head :no_content }
     end
   end
+  
+  #categorias
+  def categories
+    @attr_type_select = Content::AttributeType.where(name: 'Select').first_or_create
+    @attr_type_multi = Content::AttributeType.where(name: 'MultiSelect').first_or_create
+    
+    @content_attributes = Content::Attribute.where(["attribute_type_id = ?", @attr_type_select])
+    
+    render :file => "content/attributes/categories.json.erb", :content_type => 'application/json', :locals => { :categories => @content_attributes }
+  end
 end

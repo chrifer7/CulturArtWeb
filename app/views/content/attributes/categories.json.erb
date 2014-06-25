@@ -1,0 +1,40 @@
+{
+	"title":"Lista de Categorias",
+	"lista_categorias":{
+  <%
+  @i = 0 #contador para ver si se agrega la coma al final o no 
+  @cat_length = categories.length
+  
+  @j = 0 #contador para ver si se agrega la coma al final o no 
+  @values_length = 0
+    
+  categories.each do |category| %>	
+	"<%=category.slug%>":[
+		<%
+		@j = 0
+		@values_length = category.list_attribute_values.size
+		category.list_attribute_values.each do |cat_value| %>
+		{
+			"id":<%=cat_value.id%>,
+			"nombre":"<%=cat_value.name%>",
+			"descripcion":"<%=cat_value.description%>"
+		}
+		<%
+		  @j = @j + 1
+		  if @j < @values_length %>
+		    <%=","%>
+		  <%	
+		  end
+		   
+	  	end %>
+		]		
+  <%
+  @i = @i + 1
+  if @i < @cat_length %>
+    <%=","%>
+  <%	
+  end
+   
+  end %>
+  }
+}

@@ -34,7 +34,9 @@ RailsApp::Application.routes.draw do
   get 'content/heritages/find/:lat/:lon/:rad', to: 'content/heritages#find', 
       constraints: { lat: /[^\/]+/, lon: /[^\/]+/ }
   
-  get 'content/overlayed_imgs/view/:id', to: 'content/overlayed_imgs#view' 
+  get 'content/overlayed_imgs/view/:id', to: 'content/overlayed_imgs#view'
+  
+  get 'content/attribute_categories', to: 'content/attributes#categories'  
   
   namespace :content do
     resources :attribute_types

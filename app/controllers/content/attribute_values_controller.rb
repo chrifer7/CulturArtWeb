@@ -26,7 +26,8 @@ class Content::AttributeValuesController < ApplicationController
   def new
     @content_attribute_value = Content::AttributeValue.new
 
-    @content_attributes = Content::Attribute.all
+    @attr_type_textbox = Content::AttributeType.where(name: 'TextBox').first_or_create
+    @content_attributes = Content::Attribute.where(["attribute_type_id != ?", @attr_type_textbox])
     
     respond_to do |format|
       format.html # new.html.erb
@@ -38,7 +39,9 @@ class Content::AttributeValuesController < ApplicationController
   def edit
     @content_attribute_value = Content::AttributeValue.find(params[:id])
     
-    @content_attributes = Content::Attribute.all
+    @attr_type_textbox = Content::AttributeType.where(name: 'TextBox').first_or_create
+    @content_attributes = Content::Attribute.where(["attribute_type_id != ?", @attr_type_textbox])
+    
   end
 
   # POST /content/attribute_values

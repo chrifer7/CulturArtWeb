@@ -1,0 +1,137 @@
+{"puntos":[
+  <%
+  @i = 0 #contador para ver si se agrega la coma al final o no 
+  @length = heritages.length
+    
+  heritages.each do |heritage| %>
+  {
+	"id":<%=heritage.id%>,
+	"nombre":"<%=heritage.name%>",
+	"descripcion":"<%=heritage.description%>",
+	"historia_breve":"<%=heritage.brief_history%>",
+	"extension":<%=heritage.extention%>,
+	"lat":<%=heritage.lat%>,
+	"lon":<%=heritage.lon%>,
+	"alt":<%=heritage.alt%>,
+	"perimetro":<%=heritage.perimeter%>,
+	"ubica_geo":"<%=heritage.geo_location%>",
+	"medios_acceso":"<%=heritage.access_routes%>",
+	<%if heritage.list_overlayed_imgs.size > 0%>
+		"img_superpuesta":"<%=heritage.list_overlayed_imgs[0].id%>",
+		<%@url_img_sup =url_for :controller => :overlayed_imgs, :action => :view, :id => heritage.list_overlayed_imgs[0].id, :only_path => false, :format=>:json%>
+		"url_img_sup":<%=@url_img_sup%>,
+		"qr_img_sup":<%="https://chart.googleapis.com/chart?chs=300x300&cht=qr&chl="+@url_img_sup%>,
+	<%end%>
+	"tipo_crono":1,
+	"tipo_morfo":1,
+	"epoca":1,
+	"cultura":1,	
+	"ubica_politica":{
+		"id":"110101",
+		"dep":"Lima",
+		"prov":"Lima",
+		"dist":"Cercado de Lima"
+		},	
+	"list_autor":[
+		{
+			"id":1,
+			"nombre":"Pablito Picazzo",
+			"descripcion":"Gran pintor"
+		}
+	],
+	"list_mat_construc":[
+		{
+			"id":1,
+			"nombre":"Piedra",
+			"descripcion":"S\u00f3lo eso: una piedra"
+		},
+		{
+			"id":2,
+			"nombre":"Madera",
+			"descripcion":"S\u00f3lo eso: madera"
+		}
+	],
+	"list_afecta_natur":[
+		{
+			"id":1,
+			"nombre":"Erosi\u00f3n",
+			"descripcion":"Da\u00f1o irreparable"
+		}
+	],
+	"list_afecta_antro":[
+		{
+			"id":1,
+			"nombre":"Pinta por grafitti",
+			"descripcion":"Da\u00f1o irreparable"
+		},
+		{
+			"id":2,
+			"nombre":"Cartel publicitario",
+			"descripcion":"Da\u00f1o grave"
+		}
+	],
+	"list_imagen":[
+		{
+			"id":3,
+			"nombre":"Huaca 3",
+			"descripcion":"La Huaca 3",
+			"url":"http:\/\/culturart-pucp.rhcloud.com\/public\/images\/_pat\/3.jpg"
+		},
+		{
+			"id":2,
+			"nombre":"Huaca 2",
+			"descripcion":"La Huaca 2",
+			"url":"http:\/\/culturart-pucp.rhcloud.com\/public\/images\/_pat\/2.jpg"
+		},
+		{
+			"id":1,
+			"nombre":"Huaca 1",
+			"descripcion":"La Huaca 1",
+			"url":"http:\/\/culturart-pucp.rhcloud.com\/public\/images\/_pat\/1.jpg"
+		}
+	],
+	"list_videos":[
+		{
+			"id":2,
+			"nombre":"El otro video",
+			"descripcion":"El otro video en youtube",
+			"url":"http:\/\/youtu.be\/1JT_zWNQNbU"
+		},
+		{
+			"id":1,
+			"nombre":"El video",
+			"descripcion":"El video en youtube",
+			"url":"http:\/\/youtu.be\/Q0W8wzU0B5U"
+		}
+	],
+	"list_docs":[
+		{
+			"id":2,
+			"nombre":"Otro paper",
+			"descripcion":"Otra investigaci\u00f3n del lugar",
+			"url":"http:\/\/culturart-pucp.rhcloud.com\/public\/docs\/_pat\/2.pdf"
+		},
+		{
+			"id":1,
+			"nombre":"Un paper",
+			"descripcion":"Una investigaci\u00f3n del lugar",
+			"url":"http:\/\/culturart-pucp.rhcloud.com\/public\/docs\/_pat\/1.pdf"
+		}
+	],
+	"list_reconocim":[
+		{
+			"id":2,
+			"nombre":"Patrimonio de la Humanidad",
+			"descripcion":"Reconocimiento que se le da a nivel mundial"
+		}]
+	}
+  <%
+  @i = @i + 1
+  if @i < @length %>
+    <%=","%>
+  <%	
+  end
+   
+  end %>
+  ]
+}
