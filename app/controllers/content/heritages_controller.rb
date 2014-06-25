@@ -186,7 +186,7 @@ class Content::HeritagesController < ApplicationController
         #si la distancia está fuera del radio
         if @d <= @rad
           #agrega a la nueva lista
-          @content_heritages_result.add heritage
+          @content_heritages_result.push heritage
           
           # @content_heritages.delete heritage
         end
