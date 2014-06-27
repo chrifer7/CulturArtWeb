@@ -157,6 +157,16 @@ class Content::HeritagesController < ApplicationController
   
   # GET
   def find
+    if (params[:lat].blank?)
+      params[:lat] = -12.067412
+    end
+    if (params[:lon].blank?)
+      params[:lon] = -77.080974
+    end
+    if (params[:rad].blank?)
+      params[:rad] = 10.0
+    end
+    
     @lat = params[:lat].to_d
     @lon = params[:lon].to_d
     @rad = params[:rad].to_d
