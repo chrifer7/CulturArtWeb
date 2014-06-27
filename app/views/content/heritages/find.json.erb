@@ -19,13 +19,14 @@
 	<%if heritage.list_overlayed_imgs.size > 0%>
 		"img_superpuesta":"<%=heritage.list_overlayed_imgs[0].id%>",
 		<%@url_img_sup =url_for :controller => :overlayed_imgs, :action => :view, :id => heritage.list_overlayed_imgs[0].id, :only_path => false, :format=>:json%>
-		"url_img_sup":<%=@url_img_sup%>,
-		"qr_img_sup":<%="https://chart.googleapis.com/chart?chs=300x300&cht=qr&chl="+@url_img_sup%>,
+		"url_img_sup":"<%=@url_img_sup%>",
+		"qr_img_sup":"<%="https://chart.googleapis.com/chart?chs=300x300&cht=qr&chl="+@url_img_sup%>",
 	<%end%>
 	"tipo_crono":6,
 	"tipo_morfo":1,
 	"epoca":5,
 	"cultura":3
+	}
   <%
   @i = @i + 1
   if @i < @length %>
