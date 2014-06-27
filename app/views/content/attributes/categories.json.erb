@@ -19,6 +19,7 @@
 			"nombre":"<%=cat_value.name%>",
 			"descripcion":"<%=cat_value.description%>"
 			<%if category.slug = "morfologia"%>
+				,
 				"url":{
 					"medium":"<%=root_url(:only_path => false)+"assets/img/icons/pyramid-32x32.png"%>",
 					"high":"<%=root_url(:only_path => false)+"assets/img/icons/pyramid-48x48.png"%>",
