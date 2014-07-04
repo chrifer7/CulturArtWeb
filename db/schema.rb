@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140620210253) do
+ActiveRecord::Schema.define(:version => 20140703172614) do
 
   create_table "content_attribute_types", :force => true do |t|
     t.string   "name"
@@ -69,6 +69,16 @@ ActiveRecord::Schema.define(:version => 20140620210253) do
     t.datetime "created_at",            :null => false
     t.datetime "updated_at",            :null => false
   end
+
+  create_table "content_heritage_attributes", :id => false, :force => true do |t|
+    t.integer  "content_heritage_id",  :null => false
+    t.integer  "content_attribute_id", :null => false
+    t.text     "value"
+    t.datetime "created_at",           :null => false
+    t.datetime "updated_at",           :null => false
+  end
+
+  add_index "content_heritage_attributes", ["content_heritage_id", "content_attribute_id"], :name => "heritage_attribute_id", :unique => true
 
   create_table "content_heritages", :force => true do |t|
     t.string   "name"

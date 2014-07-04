@@ -9,6 +9,12 @@ class Content::Attribute < ActiveRecord::Base
   belongs_to :obj_attribute_type, :class_name => 'Content::AttributeType', :foreign_key => 'attribute_type_id'
   belongs_to :obj_data_type, :class_name => 'Content::DataType', :foreign_key => 'data_type_id'
   
-  has_many :list_heritages_attributes, :class_name => 'Content::HeritagesAttributes', :foreign_key => 'content_attribute_id'
-  has_many :list_heritages, through: :list_heritages_attributes
+  has_many :heritage_attributes, :class_name => 'Content::HeritageAttribute', :foreign_key => 'content_attribute_id'
+  has_many :content_heritages, through: :heritage_attributes, source: :content_heritage
+  
+  def getBySlug slug
+    where(["slug = ?", heritage_id]).first
+  end
+  
+  
 end

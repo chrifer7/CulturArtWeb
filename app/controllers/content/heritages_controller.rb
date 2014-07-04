@@ -98,20 +98,31 @@ class Content::HeritagesController < ApplicationController
   
   # POST
   def save_extra_fields
-    @attributes = Content::Attribute.all
+    # @attributes = Content::Attribute.all
     @content_heritage = Content::Heritage.find(params[:heritage_id])
     logger.info ">>> [OJO] save_extra_fields"
     
-    @heritage_attributes = [] #Defino una lista vacía de atributos
-    @attributes.each do |attribute|
-      logger.info "Slug: "+attribute.slug+" = "+params[attribute.slug]+", blanko? "+(!params[attribute.slug].blank?).to_s
-      if !params[attribute.slug].blank? #Para cada atributo que contiene datos
-        logger.info "heritage: "+@content_heritage.name
-        logger.info "size: "+@content_heritage.list_attributes.create()
-        logger.info @content_heritage
-        # @heritage_attribute.list_heritage_attributes.find()
+    params.each do |slug, value|
+      logger.info "slug: "+slug+", value: "+value
+      @attrib = Content::Attribute.where(["slug = ?", slug]).first 
+      if !@attrib.blank? && !value.blank?
+        logger.info "attrib: "+@attrib.name+" heri: "+@content_heritage.id.to_s+" att_id: "+@attrib.id.to_s+" value: "+value
+        Content::HeritageAttribute.where(["content_heritage_id = ?  AND content_attribute_id = ?", @content_heritage.id, @attrib.id]).first_or_initialize.update_attributes!(:value => value)
+      else
+        logger.info "attrib: es blank"
       end
     end
+    
+    @heritage_attributes = [] #Defino una lista vacía de atributos
+    # @attributes.each do |attribute|
+      # logger.info "Slug: "+attribute.slug+" = "+params[attribute.slug]+", blanko? "+(!params[attribute.slug].blank?).to_s
+      # if !params[attribute.slug].blank? #Para cada atributo que contiene datos
+        # logger.info "heritage: "+@content_heritage.name
+        # logger.info "size: "+@content_heritage.list_attributes.create()
+        # logger.info @content_heritage
+        # # @heritage_attribute.list_heritage_attributes.find()
+      # end
+    # end
 
     # respond_to do |format|
       # if @attributes.save
@@ -212,10 +223,30 @@ class Content::HeritagesController < ApplicationController
       # format.json { render json: @content_heritages }
     # end
   end
-  # {
+  
+  def hc
+    @content_heritage = Content::Heritage.find(1)
+    
+    @heritage_attributes = Content::HeritageAttribute.all
+    
+    @h_a = Content::HeritageAttribute.new(:content_heritage_id => 1, :content_attribute_id => 3, :value => "thanks esto es la neta")
+    # @h_a.save
+    
+    # @content_heritage.heritage_attributes.push @h_a 
+    # @content_heritage.save
+    
+    # @h_b = Content::HeritageAttribute.find(:content_heritage_id => 1, :content_attribute_id => 1)
+    @h_b = Content::HeritageAttribute.where(["content_heritage_id = ?  AND content_attribute_id = ?",1,1]).first
+    
+    @attrib = Content::Attribute.where(["slug = ?", "morfologia"]).first 
+    
+  end
+end
+
+
+# {
     # filed1: <%= @some_var %>,
     # field2: <%= @another_var %>,
     # fieldN: <%= @yet_another_var %>,
     # data: <%= @some_data.to_json.html_safe %>
   # }
-end

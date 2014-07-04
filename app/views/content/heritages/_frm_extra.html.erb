@@ -6,12 +6,20 @@
 	
 	<%= hidden_field_tag 'heritage_id', heritage.id %>	
 	<% @attributes.each do |attribute| %>
+	
+		<%  @h_a_value = ""
+			@h_a = heritage.getHeritageAttribute(heritage.id, attribute.id)
+			if !@h_a.blank? 
+				@h_a_value = @h_a.value 
+			end
+		%>	
+	
 		<%= label_tag attribute.slug, attribute.name %>
-		
+				
 		<% if attribute.obj_attribute_type.name == "TextBox" %>
-			<%= text_field_tag attribute.slug %>
+			<%= text_field_tag attribute.slug, @h_a_value %>
 		<% else %>
-			<%= text_area_tag attribute.slug %>
+			<%= text_area_tag attribute.slug, @h_a_value %>
 		<% end %>
 		
 		<!-- <input type="hidden" name="extra_fields[]" value='<%= 0 %>'/> hidden_field_tag-->

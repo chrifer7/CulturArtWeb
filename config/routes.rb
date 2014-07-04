@@ -17,17 +17,19 @@ RailsApp::Application.routes.draw do
   namespace :content do
     resources :attributes
   end
-
+  
+  get 'content/attribute_categories', to: 'content/attributes#categories'
 
   namespace :content do
     resources :overlayed_imgs
   end
-
-
+  
+  get 'content/overlayed_imgs/view/:id', to: 'content/overlayed_imgs#view'
+  
   namespace :content do
     resources :heritages
   end
-  
+    
   get 'content/heritage_fields/frm_extra', to: 'content/heritages#form_extra_fields'
   post 'content/heritage_fields/save_extra', to: 'content/heritages#save_extra_fields'
   
@@ -37,9 +39,7 @@ RailsApp::Application.routes.draw do
   get 'content/heritages/find/:lat/:lon', to: 'content/heritages#find', 
       constraints: { lat: /[^\/]+/, lon: /[^\/]+/ }
   
-  get 'content/overlayed_imgs/view/:id', to: 'content/overlayed_imgs#view'
-  
-  get 'content/attribute_categories', to: 'content/attributes#categories'  
+  get 'content/heritages_mtm/hc', to: 'content/heritages#hc'
   
   namespace :content do
     resources :attribute_types

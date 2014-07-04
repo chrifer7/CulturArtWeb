@@ -7,8 +7,8 @@ class Content::Heritage < ActiveRecord::Base
   
   has_and_belongs_to_many :attribute_values #many to many con arrtibutes values
   
-  has_many :list_heritages_attributes, :class_name => 'Content::HeritagesAttributes', :foreign_key => 'content_heritage_id'
-  has_many :list_attributes, through: :list_heritages_attributes
+  has_many :heritage_attributes, :class_name => 'Content::HeritageAttribute', :foreign_key => 'content_heritage_id'
+  has_many :content_attributes, through: :heritage_attributes, source: :content_attribute
   
   
   def distance plat, plon
@@ -50,4 +50,8 @@ class Content::Heritage < ActiveRecord::Base
 #   
     # rm * c # Delta in meters
   # end
+  
+  def getHeritageAttribute heritage_id, attribute_id
+    Content::HeritageAttribute.where(["content_heritage_id = ?  AND content_attribute_id = ?", heritage_id, attribute_id]).first
+  end
 end
