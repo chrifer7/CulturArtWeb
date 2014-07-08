@@ -50,6 +50,14 @@
   <%= @content_heritage.access_routes %>
 </p>
 
+<% @content_heritage.heritage_attributes.each do |h_a| %>
+	
+	<p>
+	  <b><%=h_a.content_attribute.name%>:</b>
+	  <%= h_a.value %>
+	</p>
+	
+<% end %>
 
 <%= link_to 'Edit', edit_content_heritage_path(@content_heritage) %> |
 <%= link_to 'Back', content_heritages_path %>

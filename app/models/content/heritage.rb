@@ -54,4 +54,25 @@ class Content::Heritage < ActiveRecord::Base
   def getHeritageAttribute heritage_id, attribute_id
     Content::HeritageAttribute.where(["content_heritage_id = ?  AND content_attribute_id = ?", heritage_id, attribute_id]).first
   end
+  
+  def updateOrInsertHeritageAttribute value, heritage_id, attribute_id
+    connection = ActiveRecord::Base.connection.raw_connection
+    
+    # connection.prepare("update_heritage_attributes_"+heritage_id.to_s+attribute_id.to_s, "update content_heritage_attributes set value=$1 where content_heritage_id=$2 and content_attribute_id=$3")
+    # st = connection.exec_prepared("update_heritage_attributes_"+heritage_id.to_s+attribute_id.to_s, [value, heritage_id, attribute_id])
+    
+    st = connection.exec_params("UPDATE content_heritage_attributes SET value=$1 WHERE content_heritage_id=$2 AND content_attribute_id=$3", [value, heritage_id, attribute_id])
+    
+    logger.info "Estado de la actualizacion: "+st.cmd_tuples.to_s
+    
+    rowsAffected = st.cmd_tuples > 0
+    
+    if !rowsAffected
+      @h_a = Content::HeritageAttribute.new(:content_heritage_id => heritage_id, :content_attribute_id => attribute_id, :value => value)
+      rowsAffected = @h_a.save      
+    end
+    
+    rowsAffected
+  end
+    
 end
