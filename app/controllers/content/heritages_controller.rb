@@ -14,7 +14,9 @@ class Content::HeritagesController < ApplicationController
   # GET /content/heritages/1.json
   def show
     @content_heritage = Content::Heritage.find(params[:id])
-
+  
+    @attributes = Content::Attribute.all
+    
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @content_heritage }

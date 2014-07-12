@@ -74,3 +74,23 @@ https://www.ruby-forum.com/topic/218320
 root
 "url":<%=root_url(:only_path => false)+img_sup.avatar.url%>,
 content_overlayed_img_path(heritage.list_overlayed_imgs[0].id, :only_path => false)
+
+-----
+show = borrar después
+<% @content_heritage.heritage_attributes.each do |h_a| %>
+	
+	<p>
+	  <b><%=h_a.content_attribute.name%>:</b>
+	  <%if h_a.content_attribute.obj_attribute_type.name == "TextBox" or h_a.content_attribute.obj_attribute_type.name == "TextArea"%>
+	  	<%= h_a.value %>
+  	  <%else%>
+  	  	<% at_val = @content_heritage.content_attribute_values.where(["attribute_id = ?",h_a.content_attribute.id]).first 
+  	  	if at_val%>
+  	  		<%=at_val.name%>
+  	  	<%end%>
+  	  	<%= #h_a.content_attribute.list_attribute_values.find(h_a.value).name 
+  	  	%>
+  	  <%end%>
+	</p>
+	
+<% end %>

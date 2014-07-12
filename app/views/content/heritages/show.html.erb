@@ -53,21 +53,30 @@
   <%= @content_heritage.access_routes %>
 </p>
 
-<% @content_heritage.heritage_attributes.each do |h_a| %>
+<% @attributes.each do |attribute| %>
 	
-	<p>
-	  <b><%=h_a.content_attribute.name%>:</b>
-	  <%if h_a.content_attribute.obj_attribute_type.name == "TextBox" or h_a.content_attribute.obj_attribute_type.name == "TextArea"%>
-	  	<%= h_a.value %>
+	
+	  <%if attribute.obj_attribute_type.name == "TextBox" or attribute.obj_attribute_type.name == "TextArea"
+	  		her_att = @content_heritage.heritage_attributes.where(["content_attribute_id = ?",attribute.id]).first
+	  		if her_att
+	  %>
+	  			<p>
+		  			<b><%=attribute.name%>:</b>
+		  			<%= her_att.value %>
+	  			</p>
+  			<%end%>
   	  <%else%>
-  	  	<% at_val = @content_heritage.content_attribute_values.where(["attribute_id = ?",h_a.content_attribute.id]).first 
+  	  	<% at_val = @content_heritage.content_attribute_values.where(["attribute_id = ?",attribute.id]).first 
   	  	if at_val%>
-  	  		<%=at_val.name%>
+  	  		<p>
+  				<b><%=attribute.name%>:</b>
+  	  			<%=at_val.name%>
+  			</p>
   	  	<%end%>
   	  	<%= #h_a.content_attribute.list_attribute_values.find(h_a.value).name 
   	  	%>
   	  <%end%>
-	</p>
+	
 	
 <% end %>
 
