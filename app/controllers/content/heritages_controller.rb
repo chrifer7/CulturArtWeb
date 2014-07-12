@@ -149,7 +149,8 @@ class Content::HeritagesController < ApplicationController
       # render :partial =>"save_extra"
       render json: {status: "ok"}
     else
-      format.html { render action: "edit" }
+      # format.html { render action: "edit" }
+      render json: {status: "error"}
     end
   end
 
