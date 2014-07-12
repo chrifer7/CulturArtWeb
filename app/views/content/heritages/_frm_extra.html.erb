@@ -26,12 +26,18 @@
 			if attribute.obj_attribute_type.name == "MultiSelect"
 				@multiple = true
 			end
-		
-			logger.info "heritage.content_attribute_values: "+(heritage.content_attribute_values.where(["attribute_id = ?",attribute.id]).map { |a_V| a_V.id }).map(&:inspect).join(', ')
+			
+			attrib_val_id_selected = " "
+			attrib_vals_selected = heritage.content_attribute_values.where(["attribute_id = ?",attribute.id])
+			if !attrib_vals_selected.blank?
+				attrib_val_id_selected = attrib_vals_selected.first.id
+				
+				logger.info "heritage.content_attribute_values: "+(attrib_vals_selected.map { |a_V| a_V.id }).map(&:inspect).join(', ')
+			end
 			
 			%>
 			
-			<%= select_tag attribute.slug, options_from_collection_for_select(attribute.list_attribute_values, "id", "name",heritage.content_attribute_values.where(["attribute_id = ?",attribute.id]).first.id), multiple: @multiple, include_blank: true %>
+			<%= select_tag attribute.slug, options_from_collection_for_select(attribute.list_attribute_values, "id", "name",attrib_val_id_selected), multiple: @multiple, include_blank: true %>
 			
 	   <% end %> 
 	<% end %>
