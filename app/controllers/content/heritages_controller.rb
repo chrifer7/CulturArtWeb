@@ -126,7 +126,7 @@ class Content::HeritagesController < ApplicationController
           if !rmv_heritage_attrib_values_ids.include? value
             logger.info "no existe, insertar "+value.to_s
             cantRowsAffected +=  @content_heritage.insertHeritageAttributeValues @content_heritage.id, value
-            logger.info "cantRowsAffected "+cantRowsAffected
+            logger.info "cantRowsAffected "+cantRowsAffected.to_s
           #caso contrario, eliminalo de la lista para borrar, debe quedar allí
           else
             logger.info "si existe, sacar del array rmv "+value.to_s
