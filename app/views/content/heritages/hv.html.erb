@@ -1,0 +1,23 @@
+<%=@content_heritage.name%><br />
+<%=@content_heritage.id%><br />
+
+<br /><br />
+
+<ul>
+<% @content_heritage.content_attribute_values.each do |hav| %>
+	
+	<li>
+	<%=hav.obj_attribute.name%> || 
+	<%=hav.name%> ||
+	<%=hav.obj_attribute.obj_attribute_type.name%> 	
+	<ul>
+		<% hav.obj_attribute.list_attribute_values.each do |av|%>
+		<li>
+			<%=av.name%>
+		</li>
+		<% end %>
+	</ul>
+	</li>
+	
+<% end %>
+</ul>

@@ -38,4 +38,6 @@ content_heritages_content_attributes
 #no funka # http://stackoverflow.com/questions/6561330/rails-3-has-and-belongs-to-many-migration
 #no funka # http://jonathanhui.com/ruby-rails-3-model-many-many-association
 
+#Join Table -> attrib values
+rails g migration create_content_heritage_attribute_value_table content_heritage:belongs_to content_attribute_value:belongs_to
 

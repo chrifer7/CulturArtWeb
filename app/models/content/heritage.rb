@@ -5,8 +5,11 @@ class Content::Heritage < ActiveRecord::Base
   
   has_many :list_overlayed_imgs, :class_name => 'Content::OverlayedImg', :foreign_key => 'heritage_id'
   
-  has_and_belongs_to_many :attribute_values #many to many con arrtibutes values
+  # has_and_belongs_to_many :content_attribute_values, :join_table => "content_heritage_attribute_values", :class_name => "Content::Attribute", :foreign_key => 'content_heritage_id'
   
+  has_many :heritage_attrib_values, :class_name => 'Content::HeritageAttributeValue', :foreign_key => 'content_heritage_id'
+  has_many :content_attribute_values, through: :heritage_attrib_values, source: :content_attribute_value
+    
   has_many :heritage_attributes, :class_name => 'Content::HeritageAttribute', :foreign_key => 'content_heritage_id'
   has_many :content_attributes, through: :heritage_attributes, source: :content_attribute
   
@@ -55,6 +58,17 @@ class Content::Heritage < ActiveRecord::Base
     Content::HeritageAttribute.where(["content_heritage_id = ?  AND content_attribute_id = ?", heritage_id, attribute_id]).first
   end
   
+  def getHeritageAttributeValue heritage_id, attribute_value_id
+    Content::HeritageAttributeValue.where(["content_heritage_id = ?  AND content_attribute_value_id = ?", heritage_id, attribute_value_id]).first
+  end
+  
+  def findMyValuesByHeritageAndAttribute heritage_id, attribute_id
+    attribute = Content::Attribute.find(attribute_id)
+    
+    Content::HeritageAttributeValue.where(["content_heritage_id = ?  AND content_attribute_value_id = ?", heritage_id, attribute_value_id]).first
+  end
+  
+  #input and textbox
   def updateOrInsertHeritageAttribute value, heritage_id, attribute_id
     connection = ActiveRecord::Base.connection.raw_connection
     
@@ -65,14 +79,66 @@ class Content::Heritage < ActiveRecord::Base
     
     logger.info "Estado de la actualizacion: "+st.cmd_tuples.to_s
     
-    rowsAffected = st.cmd_tuples > 0
+    rowsAffected = st.cmd_tuples
     
     if !rowsAffected
       @h_a = Content::HeritageAttribute.new(:content_heritage_id => heritage_id, :content_attribute_id => attribute_id, :value => value)
-      rowsAffected = @h_a.save      
+      rowsAffected = @h_a.save ? 1 : 0     
     end
     
     rowsAffected
   end
+  
+  #Select y Multiselect
+  def insertHeritageAttributeValues heritage_id, attribute_value_id
+    
+    logger.info "insertHeritageAttributeValues h_id: "+heritage_id.to_s+" atv_id: "+attribute_value_id.to_s
+    @h_av = Content::HeritageAttributeValue.new(:content_heritage_id => heritage_id, :content_attribute_value_id => attribute_value_id)
+    rowsAffected = @h_av.save ? 1 : 0     
+    logger.info "rowsAffected: "+rowsAffected.to_s
+    
+    rowsAffected
+  end
+  
+  def removeHeritageAttribValues heritage_id, heritage_attrib_values_ids
+    
+    if !heritage_attrib_values_ids.empty?
+      connection = ActiveRecord::Base.connection.raw_connection
+      
+      str_heritage_attrib_values_ids = heritage_attrib_values_ids.map(&:inspect).join(', ')
+      logger.info "En el modelo: "+str_heritage_attrib_values_ids
+      sql_del = "DELETE FROM content_heritage_attribute_values WHERE content_heritage_id = " + heritage_id.to_s + " AND content_attribute_value_id IN (" + str_heritage_attrib_values_ids + ")"
+      st = connection.exec(sql_del)
+    end
+  end
     
 end
+
+
+# 
+# connection = ActiveRecord::Base.connection.raw_connection
+#     
+# #De todos los valores de este atributo. Por ejemplo:
+# #attrib:Morfologia || list_attribute_values: Piramide, Cubo, Esfera
+# #Le resto los valores a insertar
+# #attrib_values: Piramide, Esfera
+# #Entonces debo eliminar, si existiera, la lista 
+# #attrib_values_for_delete: Cubo
+# #http://stackoverflow.com/questions/5195943/ruby-new-array-from-one-value-in-an-array-of-objects
+# 
+# attrib_values_for_delete = heritage.heritage_attrib_values - attrib_values
+# attrib_values_ids_for_delete = attrib_values_for_delete.map { |a_V| a_v.id }       
+# st = connection.exec_params("DELETE FROM content_heritage_attribute_values WHERE content_heritage_id=$1 AND content_attribute_content_attribute_values_id IN ($2)", [heritage_id, attrib_values_ids_for_delete])
+# 
+# logger.info "Estado de la eliminación: "+st.cmd_tuples.to_s
+# 
+# attrib_values_for_insert = attrib_values - heritage.heritage_attrib_values
+#     
+# rowsAffected = 0
+#     
+# attrib_values_for_insert.each do |att_val_insert|
+  # @h_a_v = Content::HeritageAttributeValue.new(:content_heritage_id => heritage.id, :content_attribute_value_id => att_val_insert.id)
+  # rowsAffected += @h_a_v.save ? 1 : 0     
+# end
+# 
+# rowsAffected

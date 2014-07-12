@@ -104,15 +104,34 @@ class Content::HeritagesController < ApplicationController
     
     cantRowsAffected = 0
     
+    #attrib values para borrar después
+    rmv_heritage_attrib_values = @content_heritage.heritage_attrib_values
+    rmv_heritage_attrib_values_ids = rmv_heritage_attrib_values.map { |a_V| a_V.content_attribute_value_id }  
+        
+    logger.info ">>values_ids[]: "+rmv_heritage_attrib_values_ids.map(&:inspect).join(', ')
+    
     # connection = ActiveRecord::Base.connection.raw_connection
     params.each do |slug, value|
       logger.info "slug: "+slug+", value: "+value
       @attrib = Content::Attribute.where(["slug = ?", slug]).first
       if !@attrib.blank? && !value.blank?
         logger.info "attrib: "+@attrib.name+" heri: "+@content_heritage.id.to_s+" att_id: "+@attrib.id.to_s+" value: "+value
-        
-        if @content_heritage.updateOrInsertHeritageAttribute value, @content_heritage.id, @attrib.id
-          cantRowsAffected = cantRowsAffected + 1
+        logger.info "type: "+@attrib.obj_attribute_type.name
+        if @attrib.obj_attribute_type.name == "TextBox" or @attrib.obj_attribute_type.name == "TextArea"
+          cantRowsAffected += @content_heritage.updateOrInsertHeritageAttribute value, @content_heritage.id, @attrib.id            
+        else
+          # logger.info "array pos 0 compared to value  [0]: " + rmv_heritage_attrib_values_ids[0].to_s + " value: "+ value.to_s + " equal: "+(rmv_heritage_attrib_values_ids[0]==value.to_i).to_s
+          value = value.to_i
+          #si el attrib value no está entre los elementos antiguos, insertalo
+          if !rmv_heritage_attrib_values_ids.include? value
+            logger.info "no existe, insertar "+value.to_s
+            cantRowsAffected +=  @content_heritage.insertHeritageAttributeValues @content_heritage.id, value
+            logger.info "cantRowsAffected "+cantRowsAffected
+          #caso contrario, eliminalo de la lista para borrar, debe quedar allí
+          else
+            logger.info "si existe, sacar del array rmv "+value.to_s
+            rmv_heritage_attrib_values_ids.delete(value)
+          end          
         end
         
       else
@@ -120,9 +139,15 @@ class Content::HeritagesController < ApplicationController
       end
     end
     
+    logger.info "rmv_heritage_attrib_values_ids: "+rmv_heritage_attrib_values_ids.map(&:inspect).join(', ')
+    #Elimina los attrib values
+    @content_heritage.removeHeritageAttribValues @content_heritage.id, rmv_heritage_attrib_values_ids
+    
     if cantRowsAffected > 0
       # format.html { redirect_to @content_heritage, notice: 'Heritage was successfully updated.' }
-      format.html { redirect_to :controller => 'content/heritage', :action => 'edit', :id=> @content_heritage.id }
+      # format.html { redirect_to :controller => 'content/heritage', :action => 'edit', :id=> @content_heritage.id }
+      # render :partial =>"save_extra"
+      render json: {status: "ok"}
     else
       format.html { render action: "edit" }
     end
@@ -238,6 +263,17 @@ class Content::HeritagesController < ApplicationController
       # # ... other code
     # end
   end
+  
+  
+  def hv
+    @content_heritage = Content::Heritage.find(1)
+
+    @heritage_attribute_value = Content::AttributeValue.find(1)
+    
+    # @h_v = Content::HeritageAttributeValue.new(:content_heritage_id => 1, :content_attribute_value_id => 1)
+    # @h_v.save
+  end
+  
 end
 
 # {

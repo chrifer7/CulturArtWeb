@@ -1,5 +1,8 @@
 <p id="notice"><%= notice %></p>
 
+<div class="geomap">
+  	<%= image_tag "http://maps.google.com/maps/api/staticmap?size=450x300&sensor=false&zoom=16&markers=#{@content_heritage.lat}%2C#{@content_heritage.lon}" %>
+  </div>
 <p>
   <b>Name:</b>
   <%= @content_heritage.name %>
@@ -54,7 +57,16 @@
 	
 	<p>
 	  <b><%=h_a.content_attribute.name%>:</b>
-	  <%= h_a.value %>
+	  <%if h_a.content_attribute.obj_attribute_type.name == "TextBox" or h_a.content_attribute.obj_attribute_type.name == "TextArea"%>
+	  	<%= h_a.value %>
+  	  <%else%>
+  	  	<% at_val = @content_heritage.content_attribute_values.where(["attribute_id = ?",h_a.content_attribute.id]).first 
+  	  	if at_val%>
+  	  		<%=at_val.name%>
+  	  	<%end%>
+  	  	<%= #h_a.content_attribute.list_attribute_values.find(h_a.value).name 
+  	  	%>
+  	  <%end%>
 	</p>
 	
 <% end %>

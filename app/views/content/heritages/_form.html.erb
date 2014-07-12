@@ -1,3 +1,6 @@
+<div style='width: 600px;'>
+  <div id="map" style='width: 600px; height: 400px;'></div>
+</div>
 <%= form_for(@content_heritage) do |f| %>
   <% if @content_heritage.errors.any? %>
     <div id="error_explanation">
@@ -10,7 +13,7 @@
       </ul>
     </div>
   <% end %>
-
+	
   <div class="field">
     <%= f.label :name %><br />
     <%= f.text_field :name %>
@@ -55,3 +58,69 @@
     <%= f.submit %>
   </div>
 <% end %>
+
+<%= javascript_include_tag 'http://maps.google.com/maps/api/js?v=3.13&amp;sensor=false&amp;libraries=geometry' %>
+<%= javascript_include_tag '//google-maps-utility-library-v3.googlecode.com/svn/tags/markerclustererplus/2.0.14/src/markerclusterer_packed.js' %>
+
+<%
+  _lat = @content_heritage.lat ? @content_heritage.lat : -12.067412
+  _lon = @content_heritage.lon ? @content_heritage.lon : -77.080974
+
+  #http://stackoverflow.com/questions/22202734/how-to-get-lat-long-position-of-any-clicked-point-on-a-map-gmaps4rails
+  #https://github.com/apneadiving/Google-Maps-for-Rails/wiki/Javascript-goodies
+%>
+<script>
+	markers = [];
+	handler = Gmaps.build('Google');
+	handler.buildMap({ provider: { }, internal: {id: 'map'}}, function(){
+	  markers = handler.addMarkers([
+	    {
+	      "lat": <%=_lat%>,
+	      "lng": <%=_lon%>,
+	      "picture": {
+	        //"url": "https://addons.cdn.mozilla.net/img/uploads/addon_icons/13/13028-64.png",
+	        "width":  36,
+	        "height": 36
+	      },
+	      "infowindow": "<%=@content_heritage.name%>"
+	    }
+	  ]);
+	  
+	  //alert("1 markers size: "+markers.length);
+	  //http://amitkumarjha26.wordpress.com/2012/04/16/use-draggable-marker-in-gmaps4rails-and-find-current-coordinates/
+	  //solution:
+	  //http://stackoverflow.com/questions/9425816/gmaps4rails-drop-a-marker-and-update-fields-attribute-in-a-form
+	  handler.bounds.extendWith(markers);
+	  handler.fitMapToBounds();
+	  handler.getMap().setZoom(15);
+	  
+	  google.maps.event.addListener(handler.getMap(), 'click', function( event ){
+	        var lat = document.getElementById("content_heritage_lat");
+	        lat.value =( event.latLng.lat());
+	        var lon = document.getElementById("content_heritage_lon");
+	        lon.value =( event.latLng.lng());   
+			
+	        // var latlong=new google.maps.LatLng(lat.value, lon.value);
+            // markers[0].setPosition(latlong);
+            
+            markers[0].setMap(null);
+            markers = handler.addMarkers([
+			    {
+			      "lat": lat.value,
+			      "lng": lon.value,
+			      "picture": {
+			        //"url": "https://addons.cdn.mozilla.net/img/uploads/addon_icons/13/13028-64.png",
+			        "width":  36,
+			        "height": 36
+			      },
+			      "infowindow": "<%=@content_heritage.name%>"
+			    }
+			]);
+			
+			console.log("cant markers: "+markers.length);
+			  
+      });
+      
+    });
+	
+</script>

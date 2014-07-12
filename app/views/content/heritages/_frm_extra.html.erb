@@ -1,4 +1,5 @@
-<%= form_tag url_for(:controller => 'heritages', :action => 'save_extra_fields'), remote:true do -%>
+<div class="attrib">	
+<%= form_tag url_for(:controller => 'heritages', :action => 'save_extra_fields'), id:"extra_fields", remote:true do -%>
 	<fieldset class="column-right2" id="">
 	<legend>Atributos Extra</legend>
 	
@@ -18,25 +19,60 @@
 				
 		<% if attribute.obj_attribute_type.name == "TextBox" %>
 			<%= text_field_tag attribute.slug, @h_a_value %>
-		<% else %>
+		<% elsif attribute.obj_attribute_type.name == "TextArea" %>
 			<%= text_area_tag attribute.slug, @h_a_value %>
-		<% end %>
+		<% else #is select or multiple 
+			@multiple = false
+			if attribute.obj_attribute_type.name == "MultiSelect"
+				@multiple = true
+			end
 		
-		<!-- <input type="hidden" name="extra_fields[]" value='<%= 0 %>'/> hidden_field_tag-->
-		    
+			logger.info "heritage.content_attribute_values: "+(heritage.content_attribute_values.where(["attribute_id = ?",attribute.id]).map { |a_V| a_V.id }).map(&:inspect).join(', ')
+			
+			%>
+			
+			<%= select_tag attribute.slug, options_from_collection_for_select(attribute.list_attribute_values, "id", "name",heritage.content_attribute_values.where(["attribute_id = ?",attribute.id]).first.id), multiple: @multiple, include_blank: true %>
+			
+	   <% end %> 
 	<% end %>
 	
 	<% #hidden_field_tag "attribute_id",attribute.id  
 	%>
+	<!-- <input type="hidden" name="extra_fields[]" value='<%= 0 %>'/> hidden_field_tag-->
 	
-	<%= submit_tag 'Guardar', :id => 'btn_save_extra_fields' %>
+	<br />
+	<%= submit_tag 'Actualizar sólo atributos extra', :id => 'btn_save_extra_fields' %>
 	<!-- <input id="btn_save_extra_fields" type="submit" value="Guardar" class="column-right1" /> -->
 	</fieldset>
 <% end %>
+<div>
+<div id="loading"></div>	
+<div id="response"></div>	
 <script type="text/javascript">
-$(document).ready ->
-  $("#btn_save_extra_fields").on("ajax:success", (e, data, status, xhr) ->
-    $("#btn_save_extra_fields").append xhr.responseText
-  ).on "ajax:error", (e, xhr, status, error) ->
-    $("#btn_save_extra_fields").append "<p>ERROR</p>"
+
+// $(document).ready ->
+  // $("#btn_save_extra_fields").on("ajax:success", (e, data, status, xhr) ->
+    // $("#result_msg").append(xhr.responseText)
+    // // $("#result_msg").append("Datos actualizados correctamente.")
+  // ).on "ajax:error", (e, xhr, status, error) ->
+    // $("#result_msg").append("Ocurrió un error al guardar los datos.");
+    
+// jQuery(function($) {
+  // // create a convenient toggleLoading function
+  // var toggleLoading = function() { $("#loading").toggle() };
+// 
+  // $("#extra_fields")
+    // .bind("ajax:loading",  toggleLoading)
+    // .bind("ajax:complete", toggleLoading)
+    // .bind("ajax:success", function(xhr, data, status) {
+    	// alert("buuuu");
+      // $("#response").html(status+"Datos actualizados");
+    // });
+// });
+
+$("#extra_fields").on('ajax:success', function(xhr, data, status) {
+  console.log('ajax:success!');
+  $("#response").html(status+"Datos actualizados");
+});
+
 </script>

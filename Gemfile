@@ -60,3 +60,5 @@ gem 'jquery-rails'
 #Gemas añadidas al proyecto:
 gem 'devise'
 gem 'paperclip'
+gem 'gmaps4rails'
+gem 'geocoder'

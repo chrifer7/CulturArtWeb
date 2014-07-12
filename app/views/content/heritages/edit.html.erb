@@ -1,7 +1,18 @@
 <h1>Editing content_heritage</h1>
 
-<%= render 'form' %>
-<%= render :partial =>"frm_extra", :locals => { :heritage => @content_heritage } %>
-
+<ul class="nav nav-tabs" role="tablist">
+  <li class="active"><a href="#basic_data" role="tab" data-toggle="tab">Datos básicos</a></li>
+  <li><a href="#extended_data" role="tab" data-toggle="tab">Datos extendidos</a></li>  
+</ul>
+<div class="well well-lg">
+<div class="tab-content">
+  <div class="tab-pane fade in active" id="basic_data">
+  	<%= render 'form' %>
+  </div>
+  <div class="tab-pane fade" id="extended_data">
+  	<%= render :partial =>"frm_extra", :locals => { :heritage => @content_heritage } %>
+  </div>
+</div>
+</div>
 <%= link_to 'Show', @content_heritage %> |
 <%= link_to 'Back', content_heritages_path %>

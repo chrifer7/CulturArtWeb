@@ -40,6 +40,7 @@ RailsApp::Application.routes.draw do
       constraints: { lat: /[^\/]+/, lon: /[^\/]+/ }
   
   get 'content/heritages_mtm/hc', to: 'content/heritages#hc'
+  get 'content/heritages_mtm/hv', to: 'content/heritages#hv'
   
   namespace :content do
     resources :attribute_types
