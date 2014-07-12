@@ -83,7 +83,7 @@ class Content::Heritage < ActiveRecord::Base
     
     rowsAffected = st.cmd_tuples
     
-    if !rowsAffected
+    if rowsAffected <= 0
       @h_a = Content::HeritageAttribute.new(:content_heritage_id => heritage_id, :content_attribute_id => attribute_id, :value => value)
       rowsAffected = @h_a.save ? 1 : 0
       
