@@ -199,8 +199,12 @@ class Content::HeritagesController < ApplicationController
     @rad = params[:rad].to_d
 
     if @rad.blank? || @rad < 0 || @rad > 20
-      @rad = 10
+      @rad = 1000
     end
+    
+    #kilometros a metros
+    @rad = @rad * 1000
+    
     # @rad = 70000 #para hacer unas pruebas
     logger.info "lat: "+@lat.to_s
     logger.info "lon: "+@lon.to_s
