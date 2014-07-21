@@ -21,11 +21,11 @@
 			<%if category.slug = "morfologia"%>
 				,
 				"url":{
-					"medium":"<%=root_url(:only_path => false)+"assets/img/icons/pyramid-32x32.png"%>",
-					"high":"<%=root_url(:only_path => false)+"assets/img/icons/pyramid-48x48.png"%>",
-					"x-high":"<%=root_url(:only_path => false)+"assets/img/icons/pyramid-72x72.png"%>",
-					"xx-high":"<%=root_url(:only_path => false)+"assets/img/icons/pyramid-96x96.png"%>",
-					"xxx-high":"<%=root_url(:only_path => false)+"assets/img/icons/pyramid-144x144.png"%>"
+					"medium":"<%=request.protocol + request.host_with_port + cat_value.icon.url(:medium)%>",
+					"high":"<%=request.protocol + request.host_with_port + cat_value.icon.url(:high)%>",
+					"x-high":"<%=request.protocol + request.host_with_port + cat_value.icon.url(:xhigh)%>",
+					"xx-high":"<%=request.protocol + request.host_with_port + cat_value.icon.url(:xxhigh)%>",
+					"xxx-high":"<%=request.protocol + request.host_with_port + cat_value.icon.url(:xxxhigh)%>"
 				}
 			<%end%>
 		}
