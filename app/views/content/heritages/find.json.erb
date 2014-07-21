@@ -17,15 +17,39 @@
 	"ubica_geo":"<%=heritage.geo_location%>",
 	"medios_acceso":"<%=heritage.access_routes%>",
 	<%if heritage.list_overlayed_imgs.size > 0%>
-		"img_superpuesta":"<%=heritage.list_overlayed_imgs[0].id%>",
-		<%@url_img_sup =url_for :controller => :overlayed_imgs, :action => :view, :id => heritage.list_overlayed_imgs[0].id, :only_path => false, :format=>:json%>
-		"url_img_sup":"<%=@url_img_sup%>",
-		"qr_img_sup":"<%="https://chart.googleapis.com/chart?chs=300x300&cht=qr&chl="+@url_img_sup%>",
+	"img_superpuesta":"<%=heritage.list_overlayed_imgs[0].id%>",
+	<%@url_img_sup =url_for :controller => :overlayed_imgs, :action => :view, :id => heritage.list_overlayed_imgs[0].id, :only_path => false, :format=>:json%>
+	"url_img_sup":"<%=@url_img_sup%>",
+	"qr_img_sup":"<%="https://chart.googleapis.com/chart?chs=300x300&cht=qr&chl="+@url_img_sup%>",
 	<%end%>
-	"tipo_crono":6,
-	"tipo_morfo":1,
-	"epoca":5,
-	"cultura":3
+	
+	<% @attributes.each do |attribute| %>
+	
+	  <%if attribute.obj_attribute_type.name == "TextBox" or attribute.obj_attribute_type.name == "TextArea"
+  		  her_att = heritage.heritage_attributes.where(["content_attribute_id = ?",attribute.id]).first
+  		  if her_att
+  		  	if !her_att.is_num? %>
+  		  	
+	"<%=attribute.slug%>":"<%= her_att.value %>",
+    
+	  	    <%else%>
+	  	    
+	"<%=attribute.slug%>":<%= her_att.value %>,
+    
+  		  	<%end%>	  				  			
+  		  <%end%>
+  	  <%else%>
+  	  	<% at_val = heritage.content_attribute_values.where(["attribute_id = ?",attribute.id]).first 
+  	  	if at_val%>
+  	  	
+	"<%=attribute.slug%>":<%=at_val.id%>,
+  	  			  			
+  	  	<%end%>  	  	
+  	  <%end%>		
+		
+	<% end %>
+	
+	"final_comma":1
 	}
   <%
   @i = @i + 1

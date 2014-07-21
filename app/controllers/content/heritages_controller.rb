@@ -226,15 +226,17 @@ class Content::HeritagesController < ApplicationController
         logger.info "d < rad: "+(@d <= @rad).to_s
         #si la distancia está fuera del radio
         if @d <= @rad
-        #agrega a la nueva lista
-        @content_heritages_result.push heritage
-
-        # @content_heritages.delete heritage
+          #agrega a la nueva lista
+          @content_heritages_result.push heritage
+  
+          # @content_heritages.delete heritage
         end
 
         logger.info "herigates size: "+@content_heritages_result.size.to_s
       end
     end
+    
+    @attributes = Content::Attribute.all
 
     render :file => "content/heritages/find.json.erb", :content_type => 'application/json', :locals => { :heritages => @content_heritages_result }
 
@@ -243,7 +245,7 @@ class Content::HeritagesController < ApplicationController
   # format.json { render json: @content_heritages }
   # end
   end
-
+  
   def hc
     @content_heritage = Content::Heritage.find(1)
 
