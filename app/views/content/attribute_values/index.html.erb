@@ -19,7 +19,7 @@
     <td><%= link_to @attr.name, @attr %></td>
     <td><%= content_attribute_value.name %></td>
     <td><%= content_attribute_value.description %></td>
-    <td><%= content_attribute_value.icon %></td>
+    <td><%= image_tag content_attribute_value.icon.url(:medium) %></td>
     <td><%= link_to 'Show', content_attribute_value %></td>
     <td><%= link_to 'Edit', edit_content_attribute_value_path(content_attribute_value) %></td>
     <td><%= link_to 'Destroy', content_attribute_value, method: :delete, data: { confirm: 'Are you sure?' } %></td>

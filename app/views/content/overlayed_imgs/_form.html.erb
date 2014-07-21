@@ -20,7 +20,8 @@
     <%= f.text_area :history %>
   </div>
   <div class="field">
-    <%= f.label :avatar %><br>
+    <%= f.label :avatar %><br />
+    <%= image_tag @content_overlayed_img.avatar.url(:medium) %><br />
     <%= f.file_field :avatar %>
   </div>
   <div class="field">

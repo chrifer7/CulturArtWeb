@@ -76,6 +76,76 @@ root
 content_overlayed_img_path(heritage.list_overlayed_imgs[0].id, :only_path => false)
 
 -----
+Brutal!!!
+ImageMagick
+
+http://www.waydotnet.com/2010/02/12/rmagick-on-ruby-1-9-1-i386-mingw32-work-d/
+http://phosphor-escence.blogspot.com/2010/12/if-you-fail-install-rmagick-on-mingw.html
+
+With Windows 7 work well:
+
+Step 1: DOWNLOAD
+
+1) Ruby =&gt; http://rubyforge.org/frs/download.php/74298/rubyinstaller-1.9.2-p180.exe
+2) DevKit =&gt; http://github.com/downloads/oneclick/rubyinstaller/DevKit-tdm-32-4.5.1-20101214-1400-sfx.exe
+3) ImageMagick =&gt; http://www.imagemagick.org/download/binaries/ImageMagick-6.6.7-9-Q16-windows-dll.exe
+4) RMagick =&gt; https://github.com/rmagick/rmagick/zipball/master
+5) type-windows.xml =&gt; http://www.imagemagick.org/source/type-windows.xml
+
+Step 2: Install
+
+1) Ruby =&gt; c:Ruby192
+2) DevKit =&gt; c:DevKit
+3) ImageMagick =&gt; c:ImageMagick-6.6.7-Q16 [WITH HEADER !!!!!!!]
+3.a) Replace c:ImageMagick-6.6.7-Q16configtype-ghostscript.xml  with type-windows.xml
+4) RMagick =&gt; c:rmagick-rmagick
+
+Step 3: Set Enviroment variable
+
+1) PATH = C:Ruby192bin;C:ImageMagick-6.6.7-Q16
+2) CPATH = C:ImageMagick-6.6.7-Q16include
+3) LIBRARY_PATH = C:ImageMagick-6.6.7-Q16lib
+
+Step 4: Configure DevKit
+(from https://github.com/oneclick/rubyinstaller/wiki/Development-Kit)
+
+1) cd c:DevKit
+2) ruby dk.rb init
+3) ruby dk.rb install
+4) C:DevKitdevkitvars.bat (THANKS TO Joachim  =&gt; http://www.waydotnet.com/blog/2010/02/rmagick-on-ruby-1-9-1-i386-mingw32-work-d/#comment-86618621)
+
+Step 5: Compile RMagick
+
+1) run C:DevKitmsys.bat
+2) cd /c/rmagick-rmagick
+3) ruby setup.rb
+4) ruby setup.rb install
+
+Step 6: Check
+
+1) ruby -v
+        ruby 1.9.2p180 (2011-02-18) [i386-mingw32]
+2) identify --version
+    Version: ImageMagick 6.6.7-9 2011-02-21 Q16 http://www.imagemagick.org
+	Copyright: Copyright (C) 1999-2011 ImageMagick Studio LLC
+	Features: OpenMP
+
+If you experience problems concerning “extconf.rb”, you should try:
+http://phosphor-escence.blogspot.com/2010/12/if-you-fail-install-rmagick-on-mingw.html
+from
+
+If you fail phosphorescence: Install RMagick on MinGW and MSYS, it may be the reason that convert command in extconf.rb file is overloaded with Windows File System's one. So edit the gems/rmagick-2.13.1/ext/RMagick/extconf.rb file at #171 and #178 like below:
+
+    `identify -version` =~ /Version: ImageMagick (\d+\.\d+\.\d+)-\d+ /
+
+
+Then let's type the command in gems/rmagick-2.13.1 directory.
+
+> gem build rmagick.gemspec
+> gem install rmagick-2.13.1.gem --platform=ruby -- --with-opt-lib=c:/ImageMagick/6.6.6-Q16/lib --with-opt-include=c:/ImageMagick/6.6.6-Q16/include
+
+
+------
 show = borrar después
 <% @content_heritage.heritage_attributes.each do |h_a| %>
 	

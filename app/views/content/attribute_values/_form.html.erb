@@ -33,7 +33,8 @@
   </div>
   <div class="field">
     <%= f.label :icon %><br />
-    <%= f.text_field :icon %>
+    <%= image_tag @content_attribute_value.icon.url(:high) %><br />
+    <%= f.file_field :icon %>
   </div>
   <div class="actions">
     <%= f.submit %>

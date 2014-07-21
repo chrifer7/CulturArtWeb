@@ -30,7 +30,7 @@
     <td><%= content_overlayed_img.lon_user %></td>
     <td><%= content_overlayed_img.alt_user %></td>
     <td><%= content_overlayed_img.heritage_id %></td>
-    <td><%= image_tag content_overlayed_img.avatar.url %></td>
+    <td><%= image_tag content_overlayed_img.avatar.url(:thumb) %></td>
     <!-- <td><%= image_tag content_overlayed_img.avatar.url(:thumb) %></td> -->
     <td><%= link_to 'Show', content_overlayed_img %></td>
     <td><%= link_to 'Edit', edit_content_overlayed_img_path(content_overlayed_img) %></td>

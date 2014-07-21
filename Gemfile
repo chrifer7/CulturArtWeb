@@ -25,7 +25,7 @@ group :development, :test do
   gem 'minitest'
   gem 'thor', '= 0.14.6'  
   
-  # gem 'thin'
+  # gem 'thin'  
 end
 
 # Gems used only for assets and not required
@@ -62,3 +62,6 @@ gem 'devise'
 gem 'paperclip'
 gem 'gmaps4rails'
 gem 'geocoder'
+gem 'rmagick'
+
+
