@@ -22,13 +22,10 @@
 		<% elsif attribute.obj_attribute_type.name == "TextArea" %>
 			<%= text_area_tag attribute.slug, @h_a_value %>
 		<% else #is select or multiple 
-			@multiple = false
-			if attribute.obj_attribute_type.name == "MultiSelect"
-				@multiple = true
-			end
 			
 			attrib_val_id_selected = " "
 			attrib_vals_selected = heritage.content_attribute_values.where(["attribute_id = ?",attribute.id])
+			
 			if !attrib_vals_selected.blank?
 				attrib_val_id_selected = attrib_vals_selected.first.id
 				
@@ -36,8 +33,20 @@
 			end
 			
 			%>
+			<% if attribute.obj_attribute_type.name == "MultiSelect" %>
+				<%= select_tag attribute.slug, options_from_collection_for_select(attribute.list_attribute_values, "id", "name", attrib_vals_selected.map { |a_V| a_V.id }), multiple: true, include_blank: true %>
+				
+				<%=
+					# select_tag 'stores[]', options_for_select(
+					# @stores.map {|s| [s.store_name, s.store_id]}, 
+					# @user.stores.map {|j| j.store_id}
+					# ), :multiple => true, :size => 10
+				%>
+														
+			<% else %>
+				<%= select_tag attribute.slug, options_from_collection_for_select(attribute.list_attribute_values, "id", "name",attrib_val_id_selected), multiple: false, include_blank: true %>
+			<% end %>
 			
-			<%= select_tag attribute.slug, options_from_collection_for_select(attribute.list_attribute_values, "id", "name",attrib_val_id_selected), multiple: @multiple, include_blank: true %>
 			
 	   <% end %> 
 	<% end %>

@@ -66,11 +66,13 @@
 	  			</p>
   			<%end%>
   	  <%else%>
-  	  	<% at_val = @content_heritage.content_attribute_values.where(["attribute_id = ?",attribute.id]).first 
-  	  	if at_val%>
-  	  		<p>
-  				<b><%=attribute.name%>:</b>
-  	  			<%=at_val.name%>
+	  	  	<p>
+	  				<b><%=attribute.name%>:</b>
+  	  	<% at_val = @content_heritage.content_attribute_values.where(["attribute_id = ?",attribute.id]) 
+  	  	if at_val
+  	  		at_val.each do |at_val_elem|	%>  	  		
+  	  			<br /><%=at_val_elem.name%>
+  			<%end%>
   			</p>
   	  	<%end%>
   	  	<%= #h_a.content_attribute.list_attribute_values.find(h_a.value).name 

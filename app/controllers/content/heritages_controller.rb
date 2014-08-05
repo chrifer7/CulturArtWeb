@@ -106,6 +106,20 @@ class Content::HeritagesController < ApplicationController
     
     cantRowsAffected = 0
     
+    parametros = []
+    #Creamos una arreglo de parámetros inlcuyendo los arreglos de los multiselect (aplanado)
+    params.each do |slug, value|
+      if slug && value
+        if value.kind_of?(Array)
+          value.each do |val_multi|
+            parametros.push [slug, val_multi]  
+          end
+        else
+          parametros.push [slug, value]
+        end
+      end
+    end
+    
     #attrib values para borrar después
     rmv_heritage_attrib_values = @content_heritage.heritage_attrib_values
     rmv_heritage_attrib_values_ids = rmv_heritage_attrib_values.map { |a_V| a_V.content_attribute_value_id }  
@@ -113,17 +127,23 @@ class Content::HeritagesController < ApplicationController
     logger.info ">>values_ids[]: "+rmv_heritage_attrib_values_ids.map(&:inspect).join(', ')
     
     # connection = ActiveRecord::Base.connection.raw_connection
-    params.each do |slug, value|
+    parametros.each do |slug_value|
+      slug = slug_value[0]
+      value = slug_value[1]
+      
       logger.info "slug: "+slug+", value: "+value
       @attrib = Content::Attribute.where(["slug = ?", slug]).first
       if !@attrib.blank? && !value.blank?
         logger.info "attrib: "+@attrib.name+" heri: "+@content_heritage.id.to_s+" att_id: "+@attrib.id.to_s+" value: "+value
         logger.info "type: "+@attrib.obj_attribute_type.name
         if @attrib.obj_attribute_type.name == "TextBox" or @attrib.obj_attribute_type.name == "TextArea"
+          #Si es un texto o número se almacena en HeritageAttribute (que tiene un campo value para la relación)
           cantRowsAffected += @content_heritage.updateOrInsertHeritageAttribute value, @content_heritage.id, @attrib.id            
         else
-          # logger.info "array pos 0 compared to value  [0]: " + rmv_heritage_attrib_values_ids[0].to_s + " value: "+ value.to_s + " equal: "+(rmv_heritage_attrib_values_ids[0]==value.to_i).to_s
-          value = value.to_i
+          #Caso contrario, se almacena en la tabla HeritageAttributeValue, que relaciona valores de atributos
+          #con los patrimonios, como por ejem: Cronologia: Temprana | Tardía
+          value = value.to_i #Es un ID
+          
           #si el attrib value no está entre los elementos antiguos, insertalo
           if !rmv_heritage_attrib_values_ids.include? value
             logger.info "no existe, insertar "+value.to_s

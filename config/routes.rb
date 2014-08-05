@@ -25,6 +25,7 @@ RailsApp::Application.routes.draw do
   end
   
   get 'content/overlayed_imgs/view/:id', to: 'content/overlayed_imgs#view'
+  get 'superposicion/:id', to: 'content/overlayed_imgs#view'
   
   namespace :content do
     resources :heritages

@@ -16,7 +16,7 @@ class CreateContentHeritageAttributeTable < ActiveRecord::Migration
   end
 
   def self.down
-    remove_index :content_heritage_attributes, :column => [:content_heritage_id, :content_attribute_id], :name => 'heritage_attribute_id'
+    remove_index :content_heritage_attributes, :name => 'heritage_attribute_id'
     drop_table :content_heritage_attributes
   end
 end
