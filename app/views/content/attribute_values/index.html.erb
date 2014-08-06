@@ -14,7 +14,8 @@
 <% @content_attribute_values.each do |content_attribute_value| %>
   <tr>
     <!-- <td><%= Content::Attribute.find(content_attribute_value.attribute_id).name %></td> -->
-    <% @attr = Content::Attribute.find(content_attribute_value.attribute_id)
+    <% if content_attribute_value.attribute_id
+    	@attr = Content::Attribute.find(content_attribute_value.attribute_id)
     %>
     <td><%= link_to @attr.name, @attr %></td>
     <td><%= content_attribute_value.name %></td>
@@ -23,6 +24,7 @@
     <td><%= link_to 'Show', content_attribute_value %></td>
     <td><%= link_to 'Edit', edit_content_attribute_value_path(content_attribute_value) %></td>
     <td><%= link_to 'Destroy', content_attribute_value, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <% end %>
   </tr>
 <% end %>
 </table>

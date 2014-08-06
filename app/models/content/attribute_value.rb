@@ -1,5 +1,5 @@
 class Content::AttributeValue < ActiveRecord::Base
-  attr_accessible :attribute_id, :description, :icon, :name
+  attr_accessible :attribute_id, :description, :icon, :name, :obj_attribute
   
   has_attached_file :icon, :styles => { 
                                   :medium => "32x32>", 
@@ -12,6 +12,7 @@ class Content::AttributeValue < ActiveRecord::Base
   
   validates :name, presence: true
   validates :obj_attribute, presence: true
+  validates :attribute_id, presence: true
   
   belongs_to :obj_attribute, inverse_of: :list_attribute_values, :class_name => 'Content::Attribute', :foreign_key => 'attribute_id'
   

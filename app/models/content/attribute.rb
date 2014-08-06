@@ -1,5 +1,5 @@
 class Content::Attribute < ActiveRecord::Base
-  attr_accessible :attribute_type_id, :data_type_id, :description, :name, :slug
+  attr_accessible :attribute_type_id, :data_type_id, :description, :name, :slug, :obj_attribute_type, :obj_data_type 
   
   validates :name, presence: true
   validates_uniqueness_of :slug
