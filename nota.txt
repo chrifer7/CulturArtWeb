@@ -150,3 +150,10 @@ Then let's type the command in gems/rmagick-2.13.1 directory.
 
 
 ------
+Revisar:
+http://stackoverflow.com/questions/20361428/rails-i18n-validation-deprecation-warning
+
+------
+Fixtures:
+rake db:fixtures:load RAILS_ENV=test
+rake db:test:load

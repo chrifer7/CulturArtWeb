@@ -1,11 +1,11 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
-
-one:
-  content_heritage_id: 1
-  content_attribute_id: 1
-  value: MyText
-
-two:
-  content_heritage_id: 1
-  content_attribute_id: 1
-  value: MyText
+# # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+# 
+# one:
+  # content_heritage_id: 1
+  # content_attribute_id: 1
+  # value: MyText
+# 
+# two:
+  # content_heritage_id: 1
+  # content_attribute_id: 1
+  # value: MyText

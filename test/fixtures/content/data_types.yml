@@ -1,9 +1,9 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
-
-one:
-  name: MyString
-  ptype: MyString
-
-two:
-  name: MyString
-  ptype: MyString
+# # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+# 
+# one:
+  # name: MyString
+  # ptype: MyString
+# 
+# two:
+  # name: MyString
+  # ptype: MyString

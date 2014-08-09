@@ -1,13 +1,13 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
-
-one:
-  name: MyString
-  description: MyText
-  attribute_type_id: 1
-  data_type_id: 1
-
-two:
-  name: MyString
-  description: MyText
-  attribute_type_id: 1
-  data_type_id: 1
+# # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+# 
+# one:
+  # name: MyString
+  # description: MyText
+  # attribute_type_id: 1
+  # data_type_id: 1
+# 
+# two:
+  # name: MyString
+  # description: MyText
+  # attribute_type_id: 1
+  # data_type_id: 1

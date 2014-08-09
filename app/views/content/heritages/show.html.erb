@@ -1,8 +1,5 @@
 <p id="notice"><%= notice %></p>
 
-<div class="geomap">
-  	<%= image_tag "http://maps.google.com/maps/api/staticmap?size=450x300&sensor=false&zoom=16&markers=#{@content_heritage.lat}%2C#{@content_heritage.lon}" %>
-  </div>
 <p>
   <b>Name:</b>
   <%= @content_heritage.name %>
@@ -12,7 +9,10 @@
   <b>Description:</b>
   <%= @content_heritage.description %>
 </p>
-
+<div>
+	<b>Imagen Superpuesta:</b>
+	<%= image_tag @content_heritage.list_overlayed_imgs[0].avatar.url(:medium)%>
+</div>
 <p>
   <b>Brief history:</b>
   <%= @content_heritage.brief_history %>
@@ -22,7 +22,10 @@
   <b>Extention:</b>
   <%= @content_heritage.extention %>
 </p>
-
+<div class="geomap">
+	<b>Mapa:</b>
+  	<%= image_tag "http://maps.google.com/maps/api/staticmap?size=450x300&sensor=false&zoom=16&markers=#{@content_heritage.lat}%2C#{@content_heritage.lon}" %>
+</div>
 <p>
   <b>Lat:</b>
   <%= @content_heritage.lat %>

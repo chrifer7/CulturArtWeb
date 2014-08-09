@@ -1,25 +1,16 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
-one:
-  name: MyString
-  description: MyText
-  brief_history: MyText
-  extention: 1.5
-  lat: 1.5
-  lon: 1.5
-  alt: 1.5
-  perimeter: 1.5
-  geo_location: MyText
-  access_routes: MyText
+<% 1000.times do |n| %>
+heritage_<%= n %>:
+  name: <%= "patrimonio#{n}" %> 
+  description: Un templo donde se adoraba a la Luna.
+  brief_history: En aquel tiempo el sacerdote oficiaba la ceremonia.
+  extention: 2500
+  lat: -12.087386
+  lon: -77.05335
+  alt: 10
+  perimeter: 100
+  geo_location: Cerca a la PUCP.
+  access_routes:  Se accede a ella a través de la puerta de la huaca.
 
-two:
-  name: MyString
-  description: MyText
-  brief_history: MyText
-  extention: 1.5
-  lat: 1.5
-  lon: 1.5
-  alt: 1.5
-  perimeter: 1.5
-  geo_location: MyText
-  access_routes: MyText
+<% end %>

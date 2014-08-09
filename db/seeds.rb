@@ -49,6 +49,7 @@ attributes = Content::Attribute.create([
                       
 attrib_values = Content::AttributeValue.create([
   #Morfología
+  #0
             {name: 'Abrigo rocoso', description: 'Formaciones geológicas en forma de cavidad sin mayor profundidad.',
             attribute_id: attributes[1].id, obj_attribute: attributes[1], icon: File.open(File.join(Rails.root,'public/assets/img/icons/abrigo_rocoso.png'))},
             {name: 'Aldea', description: 'Conjunto de recintos destinados a las viviendas que no ocupan grandes extensiones.',
@@ -96,40 +97,120 @@ attrib_values = Content::AttributeValue.create([
 
                         
       #Cronología
+      #22
             {name: 'Horizonte Medio', description: '(1000 - 1470 DC)\nDespués de las grandes sociedades del Horizonte Medio, los Andes volverán a un panorama de sociedades regionales, independientes, y, en la mayoría de los casos, con territorios de escala reducida. Estos sociedades se enfrentarán a menudo entre ellas, sobre todo en la sierra. La arquitectura fortificada de piedra en las cimas de cerros en la sierra central son un testigo de estas épocas inestables.',
             attribute_id: attributes[0].id, obj_attribute: attributes[0], icon: File.open(File.join(Rails.root,'public/assets/img/icons/horizonte_medio.png'))},
             {name: 'Horizonte Tardío', description: '(1470 - 1532 DC)\nEste es el periodo en el que la sociedad Inca crea un imperio que controla los Andes desde el sur de Colombia hasta el centro de Chile, dominando cerca de 5000 kilómetros de la cordillera y costa andina. Es el último periodo de la secuencia histórica nativa andina, y será el más corto durando solamente unos 70 a 80 años. La sociedad Inca creará un sistema administrativo muy complejo para manejar los extensos territorios y a la gente muy diversa bajo su poder. Utilizarán herramientas administrativas como los quipus (cuerdas anudadas, los complejos sitios administrativos, los extensos centros del almacenaje, la larga red de caminos, y los movimientos masivos de poblaciones. (Algunos de estos dispositivos se pudieron haber utilizado, en mayor o menor grado, en las sociedades estatales y expansivas del Horizonte Medio).',
             attribute_id: attributes[0].id, obj_attribute: attributes[0], icon: File.open(File.join(Rails.root,'public/assets/img/icons/horizonte_tardio.png'))},            
                         
       #Cultura
+      #24
             {name: 'Cultura Inca', description: 'La civilización incaica o quechua, fue la última de las grandes civilizaciones precolombinas que conservó su estado independiente (imperio incaico) durante la Conquista de América, hasta la conquista del Perú (1532-1533). Con la extensión del imperio, ésta fue absorbiendo nuevas expresiones culturales de los pueblos anexados y se ubicó en los actuales territorios del Perú, Argentina, Bolivia, Chile, Colombia y Ecuador.',
             attribute_id: attributes[3].id, obj_attribute: attributes[3], icon: File.open(File.join(Rails.root,'public/assets/img/icons/inca.png'))},
             {name: 'Cultura chimú', description: 'Chimú o Chimor es una cultura pre incaica que se desarrollo en la costa norte tras el decaimiento del Imperio huari entre los años 1000 y 1200. Ocuparon los territorios que antes habitaron los mochicas, llegando a expandir sus dominios, en su etapa de mayor desarrollo, por toda una extensa franja del norte del Perú, desde Tumbes hasta el valle de Huarmey, con una extensión de 50 kilómetros al cuadrado.',
             attribute_id: attributes[3].id, obj_attribute: attributes[3], icon: File.open(File.join(Rails.root,'public/assets/img/icons/tumi.png'))},
       
       #Época
+      #26
             {name: 'Época Prehispánica', description: 'Etapa comprendida antes de la llegada de los españoles en 1532. La economía en ese tiempo era agraria y colectivista. Existía un gobierno autocrático. Existía una creencia en otros dioses, su dios supremo era el Sol (Wiracocha). Se hacía uso de varias lenguas: yunga, tallán, muchik (costa) quechua (sierra) aymara, puquina (zona del altiplano). El idioma oficial del imperio era el Quechua o Runasimi. \nLo que se conoce de la literatura prehispánica se refiere más a las manifestaciones habidas entre los incas, y muy poco de las culturas más antiguas (Chavín, Wari, Mochica- Chimu, etc.), esto porque los cronistas españoles tuvieron más contacto con la cultura Inca. A pesar de que los incas no conocieran la escritura, esto no significa que no tuvieran manifestaciones artísticas y literarias.',
             attribute_id: attributes[2].id, obj_attribute: attributes[2], icon: File.open(File.join(Rails.root,'public/assets/img/icons/prehispanica.png'))},
             {name: 'Época de la Conquista', description: 'Se dio la destrucción de la organización social, política y cultural del Tahuantinsuyo. Una cruzada religiosa e imposición del idioma castellano. Llegan los primeros cronistas españoles (Jerez, Estete, Pedro Pizarro) \nSe da una guerra civil entre los españoles conquistadores. Ejecución de tupas Amaru I, por órdenes de Toledo (1572).',
-            attribute_id: attributes[2].id, obj_attribute: attributes[2], icon: File.open(File.join(Rails.root,'public/assets/img/icons/consquista.png'))}
-      
+            attribute_id: attributes[2].id, obj_attribute: attributes[2], icon: File.open(File.join(Rails.root,'public/assets/img/icons/consquista.png'))}      
 ])
+
+heritages = []
+100.times do |n|
+    n_s = (n+1).to_s
+    
+    _lat = -12.072937549755197 + (rand * 0.2 - 0.1)
+    _lon = -77.08089351654053 + (rand * 0.2 - 0.1)
+    _alt = 10 + (rand * 10)
+    
+    h_n = Content::Heritage.create(
+        {name: "Patrimonio "+n_s,
+        description: "Una descripción "+n_s,
+        brief_history: "Una breve historia "+n_s,
+        extention: rand(2000..200000),
+        lat: _lat, 
+        lon: _lon,               
+        alt: _alt,
+        perimeter: rand(200..20000),
+        geo_location: "Una geolocation "+n_s, 
+        access_routes: "Diversas rutas de acceso "+n_s 
+        }  
+      )
+    
+    #Morfología
+    h_n.heritage_attrib_values.create(
+        content_heritage_id: h_n.id,
+        content_attribute_value_id: attrib_values[0 + Random.rand(22)].id
+    )
+    
+    #Cronología
+    h_n.heritage_attrib_values.create(
+        content_heritage_id: h_n.id,
+        content_attribute_value_id: attrib_values[22 + Random.rand(2)].id
+    )
+        
+    #Época
+    h_n.heritage_attrib_values.create(
+        content_heritage_id: h_n.id,
+        content_attribute_value_id: attrib_values[26 + Random.rand(2)].id
+    )
+    
+    #Cultura
+    h_n.heritage_attrib_values.create(
+        content_heritage_id: h_n.id,
+        content_attribute_value_id: attrib_values[24 + Random.rand(2)].id
+    )
+    
+    #Edad aproximada
+    h_n.heritage_attributes.create(
+        content_heritage_id: h_n.id,
+        content_attribute_id: attributes[8].id,
+        value: "Muy viejo "+n_s
+    )
+    
+    #Otro nombre
+    h_n.heritage_attributes.push.create(
+        content_heritage_id: h_n.id,
+        content_attribute_id: attributes[9].id,
+        value: "Mi otro nombre "+n_s
+    )
+    
+    h_n.list_overlayed_imgs.create(
+        alt_img: _alt,
+        alt_user: _alt,
+        heritage_id: h_n.id,
+        history: "Hubo una vez una foto "+n_s,
+        lat_img: _lat + 0.00025, 
+        lat_user: _lat + 1.5 * 0.00025, 
+        lon_img: _lon + 0.00025, 
+        lon_user: _lon + 1.5 * 0.00025, 
+        name: "El nombre de la foto "+n_s, 
+        url: "",
+        avatar: File.open(File.join(Rails.root,'public/assets/img/pat/pat_'+(Random.rand(8) + 1).to_s+'.jpg'))
+    )
+    
+    heritages.push(h_n)
+end
                       
 # i = 0
-# heritage = Content::Heritage.create([
-              # {name: Faker::Lorem.sentence(rand(2..10)).chomp('.'),
-              # description: Faker::Lorem.paragraphs(rand(2..8)).join('\n'),
-              # brief_history: Faker::Lorem.paragraphs(rand(2..8)).join('\n'),
-              # extention: rand(2000..200000),
-              # lat: -12.072937549755197 + (rand * 2 - 1), 
-              # lon:-77.08089351654053 + (rand * 2 - 1),               
-              # alt: 10 + (rand(int) * 10),
-              # perimeter: rand(200..20000),
-              # geo_location: Faker::Lorem.paragraphs(rand(2..8)).join('\n'), 
-              # access_routes: Faker::Lorem.paragraphs(rand(2..8)).join('\n') 
-              # }  
-          # ])
 
-
+# 1000.times do |n|
+    # heritage = Content::Heritage.create([
+        # {name: Faker::Lorem.sentence(rand(2..10)).chomp('.'),
+        # description: Faker::Lorem.paragraphs(rand(2..8)).join('\n'),
+        # brief_history: Faker::Lorem.paragraphs(rand(2..8)).join('\n'),
+        # extention: rand(2000..200000),
+        # lat: -12.072937549755197 + (rand * 2 - 1), 
+        # lon:-77.08089351654053 + (rand * 2 - 1),               
+        # alt: 10 + (rand(int) * 10),
+        # perimeter: rand(200..20000),
+        # geo_location: Faker::Lorem.paragraphs(rand(2..8)).join('\n'), 
+        # access_routes: Faker::Lorem.paragraphs(rand(2..8)).join('\n') 
+        # }  
+      # ])
+# end
 
 
