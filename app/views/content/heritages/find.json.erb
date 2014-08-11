@@ -1,7 +1,10 @@
-{"puntos":[
+{	"puntos":[
   <%
   @i = 0 #contador para ver si se agrega la coma al final o no 
   @length = heritages.length
+  if @length > 25
+  	@length = 25
+  end
     
   heritages.each do |heritage| %>
   {
@@ -74,9 +77,12 @@
   @i = @i + 1
   if @i < @length %>
     <%=","%>
-  <%	
+  <%
+  else
+  	break	
   end
    
   end %>
-  ]
+  ],
+  "cantidad": <%=@length%>
 }

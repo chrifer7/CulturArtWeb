@@ -213,6 +213,9 @@ class Content::HeritagesController < ApplicationController
     if (params[:rad].blank?)
       params[:rad] = 10.0
     end
+    
+    @max_pois = 25
+    @i_poi = 0
 
     @lat = params[:lat].to_d
     @lon = params[:lon].to_d
