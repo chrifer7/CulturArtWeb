@@ -157,3 +157,6 @@ http://stackoverflow.com/questions/20361428/rails-i18n-validation-deprecation-wa
 Fixtures:
 rake db:fixtures:load RAILS_ENV=test
 rake db:test:load
+----------
+- Altura para la imagen superpuesta
+- 
