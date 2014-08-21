@@ -232,33 +232,46 @@ class Content::HeritagesController < ApplicationController
     logger.info "lat: "+@lat.to_s
     logger.info "lon: "+@lon.to_s
 
-    @content_heritages = Content::Heritage.all
+    @content_heritages = Content::Heritage.find(:all).sort{|x,y| x.distance(@lat, @lon) <=> y.distance(@lat, @lon) }
+    # @content_heritages = Content::Heritage.all
+    # @content_heritages.sort {|a,b| a.distance(@lat, @lon) <=> b.distance(@lat, @lon)}
+    
+    @distances_array = []
+    
     @content_heritages_result = []
+    i_result = 0
     logger.info "herigates size: "+@content_heritages.size.to_s
     #si tenemos una lon y lat
     if !@lat.blank? && !@lon.blank?
       #recorreo todos los patrimonios
       @content_heritages.each do |heritage|
-        logger.info "heritage: "+heritage.name.to_s
+        # logger.info "heritage: "+heritage.name.to_s
         #obten la distancia
         @d = heritage.distance(@lat, @lon)
+        
+        @distances_array.push "heritage: "+heritage.name.to_s+"distance: "+@d.to_s
 
-        logger.info "distance: "+@d.to_s
-        logger.info "radio: "+@rad.to_s
+        # logger.info "distance: "+@d.to_s
+        # logger.info "radio: "+@rad.to_s
 
-        logger.info "d < rad: "+(@d <= @rad).to_s
+        # logger.info "d < rad: "+(@d <= @rad).to_s
         #si la distancia está fuera del radio
         if @d <= @rad
           #agrega a la nueva lista
           @content_heritages_result.push heritage
-  
+          i_result += 1
+            
           # @content_heritages.delete heritage
         end
-
-        logger.info "herigates size: "+@content_heritages_result.size.to_s
+        
+        if i_result > @max_pois
+          break
+        end
+            
+        # logger.info "herigates size: "+@content_heritages_result.size.to_s
       end
     end
-    
+        
     @attributes = Content::Attribute.all
 
     render :file => "content/heritages/find.json.erb", :content_type => 'application/json', :locals => { :heritages => @content_heritages_result }

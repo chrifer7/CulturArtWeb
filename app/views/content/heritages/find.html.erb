@@ -12,13 +12,14 @@
     <th>Perimeter</th>
     <th>Geo location</th>
     <th>Access routes</th>
-    <th>Distance 10,10</th>
+    <th>Distance</th>
     <th></th>
     <th></th>
     <th></th>
   </tr>
 
-<% @content_heritages.each do |content_heritage| %>
+<% i = 0 
+@content_heritages.each do |content_heritage| %>
   <tr>
     <td><%= content_heritage.name %></td>
     <td><%= content_heritage.description %></td>
@@ -30,12 +31,13 @@
     <td><%= content_heritage.perimeter %></td>
     <td><%= content_heritage.geo_location %></td>
     <td><%= content_heritage.access_routes %></td>
-    <td><%= content_heritage.distance 46.055556, 14.508333 %></td>
+    <td><%= @distances_array[i] %></td>
     <td><%= link_to 'Show', content_heritage %></td>
     <td><%= link_to 'Edit', edit_content_heritage_path(content_heritage) %></td>
     <td><%= link_to 'Destroy', content_heritage, method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
-<% end %>
+<% i += 1 
+end %>
 </table>
 
 <br />

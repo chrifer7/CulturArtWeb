@@ -19,8 +19,8 @@ class Content::Heritage < ActiveRecord::Base
     rkm = 6371                  # Earth radius in kilometers
     rm = rkm * 1000             # Radius in meters
     
-    logger.info "p: "+plat.to_s+" - "+plon.to_s
-    logger.info "h: "+self.lat.to_s+" - "+self.lon.to_s
+    # logger.info "p: "+plat.to_s+" - "+plon.to_s
+    # logger.info "h: "+self.lat.to_s+" - "+self.lon.to_s
     
     dlon_rad = (plon-lon) * rad_per_deg  # Delta, converted to rad
     dlat_rad = (plat-lat) * rad_per_deg
@@ -28,8 +28,8 @@ class Content::Heritage < ActiveRecord::Base
     lat1_rad, lon1_rad = [lat, lon].map! {|i| i * rad_per_deg }
     lat2_rad, lon2_rad = [plat,plon].map! {|i| i * rad_per_deg }
     
-    logger.info "p_r: "+lat1_rad.to_s+" - "+lon1_rad.to_s
-    logger.info "h_r: "+lat2_rad.to_s+" - "+lon2_rad.to_s
+    # logger.info "p_r: "+lat1_rad.to_s+" - "+lon1_rad.to_s
+    # logger.info "h_r: "+lat2_rad.to_s+" - "+lon2_rad.to_s
   
     a = Math.sin(dlat_rad/2)**2 + Math.cos(lat1_rad) * Math.cos(lat2_rad) * Math.sin(dlon_rad/2)**2
     c = 2 * Math.asin(Math.sqrt(a))
