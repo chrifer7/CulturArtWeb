@@ -1,14 +1,16 @@
-<h1>Listing content_attribute_types</h1>
+<%= page_heading "Lista de Tipos de Atributos" %>
 
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Description</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
+<table id="table_content_attribute_types" class="table striped bordered hovered">
+  <thead>
+	  <tr>
+	    <th>Name</th>
+	    <th>Description</th>
+	    <th>Show</th>
+	    <th>Edit</th>
+	    <th>Destroy</th>
+	  </tr>
+  </thead>
+  <tbody>
 <% @content_attribute_types.each do |content_attribute_type| %>
   <tr>
     <td><%= content_attribute_type.name %></td>
@@ -18,8 +20,9 @@
     <td><%= link_to 'Destroy', content_attribute_type, method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
 <% end %>
+  </tbody>
 </table>
 
 <br />
 
-<%= link_to 'New Attribute type', new_content_attribute_type_path %>
+<%= link_to 'Nuevo Tipo de Atributo', new_content_attribute_type_path %>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140815221548) do
+ActiveRecord::Schema.define(:version => 20140821052517) do
 
   create_table "content_attribute_types", :force => true do |t|
     t.string   "name"
@@ -25,13 +25,14 @@ ActiveRecord::Schema.define(:version => 20140815221548) do
     t.integer  "attribute_id"
     t.string   "name"
     t.text     "description"
-    t.datetime "created_at",        :null => false
-    t.datetime "updated_at",        :null => false
+    t.datetime "created_at",                              :null => false
+    t.datetime "updated_at",                              :null => false
     t.integer  "deleted"
     t.string   "icon_file_name"
     t.string   "icon_content_type"
     t.integer  "icon_file_size"
     t.datetime "icon_updated_at"
+    t.integer  "color",             :default => 16777215
   end
 
   create_table "content_attributes", :force => true do |t|

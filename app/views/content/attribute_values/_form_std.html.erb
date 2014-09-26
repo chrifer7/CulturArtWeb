@@ -1,0 +1,42 @@
+<%= form_for(@content_attribute_value) do |f| %>
+  <% if @content_attribute_value.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@content_attribute_value.errors.count, "error") %> prohibited this content_attribute_value from being saved:</h2>
+
+      <ul>
+      <% @content_attribute_value.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :attribute_id %><br />
+    <%= 
+    	if @content_attributes.blank?
+    		@content_attributes = []
+    	end
+    	
+    	f.select :attribute_id, @content_attributes.collect { |t| [t.name, t.id]}, {:include_blank=>"Seleccione"}, {:class => 'combobox'}
+    	
+    	#f.number_field :attribute_id 
+    %>    
+  </div>
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :description %><br />
+    <%= f.text_area :description %>
+  </div>
+  <div class="field">
+    <%= f.label :icon %><br />
+    <%= image_tag @content_attribute_value.icon.url(:high) %><br />
+    <%= f.file_field :icon %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

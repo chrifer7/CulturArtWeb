@@ -1,4 +1,7 @@
+<div class="example">
+	
 <%= form_for(@content_attribute_type) do |f| %>
+	
   <% if @content_attribute_type.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@content_attribute_type.errors.count, "error") %> prohibited this content_attribute_type from being saved:</h2>
@@ -11,15 +14,26 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :description %><br />
-    <%= f.text_area :description %>
-  </div>
+<fieldset>
+	
+<legend>Legend</legend>
+
+	<%= f.label :name %>
+	<div class="input-control text" data-role="input-control">
+		<%= f.text_field :name %>
+	</div>
+  	
+    <%= f.label :description %>
+    <div class="input-control textarea" data-role="input-control">
+    	<%= f.text_area :description %>
+	</div>
+	
   <div class="actions">
     <%= f.submit %>
   </div>
+  
+</fieldset>
+
 <% end %>
+
+</div>

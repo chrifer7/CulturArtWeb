@@ -28,6 +28,9 @@ class Content::AttributeValuesController < ApplicationController
 
     @attr_type_textbox = Content::AttributeType.where(name: 'TextBox').first_or_create
     @content_attributes = Content::Attribute.where(["attribute_type_id != ?", @attr_type_textbox])
+    if @content_attributes.blank?
+      @content_attributes = []
+    end
     
     respond_to do |format|
       format.html # new.html.erb
@@ -41,6 +44,9 @@ class Content::AttributeValuesController < ApplicationController
     
     @attr_type_textbox = Content::AttributeType.where(name: 'TextBox').first_or_create
     @content_attributes = Content::Attribute.where(["attribute_type_id != ?", @attr_type_textbox])
+    if @content_attributes.blank?
+      @content_attributes = []
+    end
     
   end
 
@@ -48,6 +54,12 @@ class Content::AttributeValuesController < ApplicationController
   # POST /content/attribute_values.json
   def create
     @content_attribute_value = Content::AttributeValue.new(params[:content_attribute_value])
+    
+    @attr_type_textbox = Content::AttributeType.where(name: 'TextBox').first_or_create
+    @content_attributes = Content::Attribute.where(["attribute_type_id != ?", @attr_type_textbox])
+    if @content_attributes.blank?
+      @content_attributes = []
+    end
 
     respond_to do |format|
       if @content_attribute_value.save
@@ -64,6 +76,12 @@ class Content::AttributeValuesController < ApplicationController
   # PUT /content/attribute_values/1.json
   def update
     @content_attribute_value = Content::AttributeValue.find(params[:id])
+    
+    @attr_type_textbox = Content::AttributeType.where(name: 'TextBox').first_or_create
+    @content_attributes = Content::Attribute.where(["attribute_type_id != ?", @attr_type_textbox])
+    if @content_attributes.blank?
+      @content_attributes = []
+    end
 
     respond_to do |format|
       if @content_attribute_value.update_attributes(params[:content_attribute_value])

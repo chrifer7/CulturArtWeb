@@ -10,8 +10,11 @@
 // WARNING: THE FIRST BLANK LINE MARKS THE END OF WHAT'S TO BE PROCESSED, ANY BLANK LINE SHOULD
 // GO AFTER THE REQUIRES BELOW.
 //
-//= require jquery
+//= require jquery-2.1.1.min
 //= require jquery_ujs
+//= require jquery.widget.min
+//= require dataTables/jquery.dataTables
 //= require underscore
 //= require gmaps_google
 //= require_tree .
+//= require metro.min

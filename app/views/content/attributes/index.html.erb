@@ -1,6 +1,6 @@
-<h1>Listing content_attributes</h1>
+<%= page_heading "Lista de Tipologías" %>
 
-<table>
+<table class="table striped bordered hovered">
   <tr>
     <th>Name</th>
     <th>Slug</th>
@@ -26,6 +26,60 @@
 <% end %>
 </table>
 
+<div class="example">
+    <table class="table striped hovered dataTable" id="dataTables-1">
+        <thead>
+        <tr>
+            <th class="text-left">Name</th>
+            <th class="text-left">Slug</th>
+            <th class="text-left">Description</th>
+            <th class="text-left">Type</th>
+            <th class="text-left">Data Type</th>
+            <th>Show</th>
+		    <th>Edit</th>
+		    <th>Destroy</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        </tbody>
+
+        <tfoot>
+        <tr>
+            <th class="text-left">Name</th>
+            <th class="text-left">Slug</th>
+            <th class="text-left">Description</th>
+            <th class="text-left">Type</th>
+            <th class="text-left">Data Type</th>
+            <th>Show</th>
+		    <th>Edit</th>
+		    <th>Destroy</th>
+        </tr>
+        </tfoot>
+    </table>
+
+    <script>
+        $(function(){
+            $('#dataTables-1').dataTable( {
+                "bProcessing": true,
+                "bAutoWidth ": true,
+                "sAjaxSource": "http://localhost:3000/content/attributes.json",
+                "sAjaxDataProp": "",
+                "aoColumns": [
+                    { "mData": "name" },
+                    { "mData": "slug" },
+                    { "mData": "description" },
+                    { "mData": "attribute_type_id" },
+                    { "mData": "data_type_id" },
+                    { "mData": "id" },
+                    { "mData": "id" },
+                    { "mData": "id" }
+                ]
+            } );
+        });
+    </script>
+</div>
+
 <br />
 
-<%= link_to 'New Attribute', new_content_attribute_path %>
+<%= link_to 'Nueva Tipología', new_content_attribute_path %>

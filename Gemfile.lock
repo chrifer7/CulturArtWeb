@@ -1,3 +1,11 @@
+GIT
+  remote: git://github.com/rweng/jquery-datatables-rails.git
+  revision: 37349993fb40fae4fa079729a25dc99d5ef3c416
+  specs:
+    jquery-datatables-rails (2.2.3)
+      jquery-rails
+      sass-rails
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -31,7 +39,10 @@ GEM
       i18n (~> 0.6, >= 0.6.4)
       multi_json (~> 1.0)
     arel (3.0.3)
+    bcrypt (3.1.7)
     bcrypt (3.1.7-x86-mingw32)
+    bootstrap-sass (3.0.3.0)
+      sass (~> 3.2)
     builder (3.0.4)
     climate_control (0.0.3)
       activesupport (>= 3.0)
@@ -52,6 +63,10 @@ GEM
       warden (~> 1.2.3)
     erubis (2.7.0)
     execjs (2.2.0)
+    formtastic (2.2.1)
+      actionpack (>= 3.0)
+    formtastic-bootstrap (3.0.0)
+      formtastic (>= 2.2)
     geocoder (1.2.3)
     gmaps4rails (2.1.2)
     hike (1.2.3)
@@ -73,6 +88,7 @@ GEM
       activesupport (>= 2.3.2)
       cocaine (>= 0.0.2)
       mime-types
+    pg (0.17.1)
     pg (0.17.1-x86-mingw32)
     polyglot (0.3.5)
     rack (1.4.5)
@@ -129,10 +145,14 @@ PLATFORMS
 
 DEPENDENCIES
   activerecord-postgresql-adapter
+  bootstrap-sass (~> 3.0.3.0)
   coffee-rails
   devise
+  formtastic
+  formtastic-bootstrap
   geocoder
   gmaps4rails
+  jquery-datatables-rails!
   jquery-rails
   minitest
   paperclip

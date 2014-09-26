@@ -41,3 +41,5 @@ content_heritages_content_attributes
 #Join Table -> attrib values
 rails g migration create_content_heritage_attribute_value_table content_heritage:belongs_to content_attribute_value:belongs_to
 
+#Ubigeo
+rails g scaffold content/Ubigeo 

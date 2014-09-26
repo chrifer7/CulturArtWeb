@@ -1,4 +1,6 @@
 RailsApp::Application.routes.draw do
+  # mount UbigeoRails::Engine, at: "ubigeo"
+
   namespace :content do
     resources :documents
   end

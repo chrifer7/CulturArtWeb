@@ -1,5 +1,5 @@
 class Content::AttributeValue < ActiveRecord::Base
-  attr_accessible :attribute_id, :description, :icon, :name, :obj_attribute
+  attr_accessible :attribute_id, :description, :icon, :name, :color, :obj_attribute
   
   has_attached_file :icon, :styles => { 
                                   :medium => "32x32>", 
