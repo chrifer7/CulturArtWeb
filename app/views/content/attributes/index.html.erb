@@ -1,83 +1,45 @@
 <%= page_heading "Lista de Tipologías" %>
 
-<table class="table striped bordered hovered">
-  <tr>
-    <th>Name</th>
-    <th>Slug</th>
-    <th>Description</th>
-    <th>Attribute type</th>
-    <th>Data type</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+<div class="example">
 
+<table id="table_content_attribute" class="table striped bordered hovered">
+  <thead>
+	  <tr>
+	    <th>Nombre</th>
+	    <th>Slug</th>
+	    <th>Descripción</th>
+	    <th>Tipo de Atributo</th>
+	    <th>Tipo de Dato</th>
+	    <th></th>
+	    <th></th>
+	  </tr>
+  </thead>
+  <tbody>
 <% @content_attributes.each do |content_attribute| %>
   <tr>
-    <td><%= content_attribute.name %></td>
+    <td><%= link_to content_attribute.name, content_attribute %></td>
     <td><%= content_attribute.slug %></td>
     <td><%= content_attribute.description %></td>
-    <td><%= content_attribute.attribute_type_id %></td>
-    <td><%= content_attribute.data_type_id %></td>
-    <td><%= link_to 'Show', content_attribute %></td>
-    <td><%= link_to 'Edit', edit_content_attribute_path(content_attribute) %></td>
-    <td><%= link_to 'Destroy', content_attribute, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= content_attribute.obj_attribute_type.name %></td>
+    <td><%= !content_attribute.obj_data_type ? "" : content_attribute.obj_data_type.name %></td>    
+    <td><%= link_to '<i class="icon-pencil fg-darker"></i>'.html_safe, edit_content_attribute_path(content_attribute) %></td>
+    <td><%= link_to '<i class="icon-remove fg-darker"></i>'.html_safe, content_attribute, method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
 <% end %>
+  </tbody>
+  <tfoot>
+  	  <tr>
+	    <th>Nombre</th>
+	    <th>Slug</th>
+	    <th>Descripción</th>
+	    <th>Tipo de Atributo</th>
+	    <th>Tipo de Dato</th>
+	    <th></th>
+	    <th></th>
+	  </tr>
+  </tfoot>	
 </table>
 
-<div class="example">
-    <table class="table striped hovered dataTable" id="dataTables-1">
-        <thead>
-        <tr>
-            <th class="text-left">Name</th>
-            <th class="text-left">Slug</th>
-            <th class="text-left">Description</th>
-            <th class="text-left">Type</th>
-            <th class="text-left">Data Type</th>
-            <th>Show</th>
-		    <th>Edit</th>
-		    <th>Destroy</th>
-        </tr>
-        </thead>
-
-        <tbody>
-        </tbody>
-
-        <tfoot>
-        <tr>
-            <th class="text-left">Name</th>
-            <th class="text-left">Slug</th>
-            <th class="text-left">Description</th>
-            <th class="text-left">Type</th>
-            <th class="text-left">Data Type</th>
-            <th>Show</th>
-		    <th>Edit</th>
-		    <th>Destroy</th>
-        </tr>
-        </tfoot>
-    </table>
-
-    <script>
-        $(function(){
-            $('#dataTables-1').dataTable( {
-                "bProcessing": true,
-                "bAutoWidth ": true,
-                "sAjaxSource": "http://localhost:3000/content/attributes.json",
-                "sAjaxDataProp": "",
-                "aoColumns": [
-                    { "mData": "name" },
-                    { "mData": "slug" },
-                    { "mData": "description" },
-                    { "mData": "attribute_type_id" },
-                    { "mData": "data_type_id" },
-                    { "mData": "id" },
-                    { "mData": "id" },
-                    { "mData": "id" }
-                ]
-            } );
-        });
-    </script>
 </div>
 
 <br />

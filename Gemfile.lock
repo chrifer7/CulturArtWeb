@@ -75,6 +75,8 @@ GEM
     jquery-rails (3.1.0)
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
+    jquery-ui-rails (5.0.0)
+      railties (>= 3.2.16)
     json (1.8.1)
     mail (2.5.4)
       mime-types (~> 1.16)
@@ -139,6 +141,7 @@ GEM
       json (>= 1.8.0)
     warden (1.2.3)
       rack (>= 1.0)
+    will_paginate (3.0.7)
 
 PLATFORMS
   x86-mingw32
@@ -154,6 +157,7 @@ DEPENDENCIES
   gmaps4rails
   jquery-datatables-rails!
   jquery-rails
+  jquery-ui-rails
   minitest
   paperclip
   pg (>= 0.17.1)
@@ -164,3 +168,4 @@ DEPENDENCIES
   thor (= 0.14.6)
   thread_safe (= 0.3.3)
   uglifier (>= 1.0.3)
+  will_paginate

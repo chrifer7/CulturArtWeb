@@ -1,30 +1,46 @@
 <%= page_heading "Lista de Tipos de Documento" %>
 
-<table class="table striped bordered hovered">
-  <tr>
-    <th>Name</th>
-    <th>Description</th>
-    <th>Icon</th>
-    <th>Icon file name</th>
-    <th>Icon content type</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+<div class="example">
 
+<table id="table_content_document_type" class="table striped bordered hovered">
+  <thead>
+	  <tr>
+	    <th>Nombre</th>
+	    <th>Descripción</th>
+	    <th>Icon</th>
+	    <th>Icon file name</th>
+	    <th>Icon content type</th>
+	    <th></th>
+	    <th></th>
+	  </tr>
+  </thead>
+  <tbody>
 <% @content_document_types.each do |content_document_type| %>
   <tr>
-    <td><%= content_document_type.name %></td>
+    <td><%= link_to content_document_type.name, content_document_type %></td>
     <td><%= content_document_type.description %></td>
     <td><%= content_document_type.icon %></td>
     <td><%= content_document_type.icon_file_name %></td>
-    <td><%= content_document_type.icon_content_type %></td>
-    <td><%= link_to 'Show', content_document_type %></td>
-    <td><%= link_to 'Edit', edit_content_document_type_path(content_document_type) %></td>
-    <td><%= link_to 'Destroy', content_document_type, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= content_document_type.icon_content_type %></td>    
+    <td><%= link_to '<i class="icon-pencil fg-darker"></i>'.html_safe, edit_content_document_type_path(content_document_type) %></td>
+    <td><%= link_to '<i class="icon-remove fg-darker"></i>'.html_safe, content_document_type, method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
 <% end %>
+  </tbody>
+  <tfoot>
+	  <tr>
+	    <th>Nombre</th>
+	    <th>Descripción</th>
+	    <th>Icon</th>
+	    <th>Icon file name</th>
+	    <th>Icon content type</th>
+	    <th></th>
+	    <th></th>
+	  </tr>
+  </tfoot>
 </table>
+
+</div>
 
 <br />
 

@@ -41,6 +41,7 @@ group :assets do
   gem 'bootstrap-sass', '~> 3.0.3.0'
   
   gem 'jquery-datatables-rails', github: 'rweng/jquery-datatables-rails'
+  gem 'jquery-ui-rails'
 end
 
 gem 'jquery-rails'
@@ -69,5 +70,7 @@ gem 'rmagick'
 
 gem 'formtastic'
 gem 'formtastic-bootstrap'
+
+gem 'will_paginate'
 
 

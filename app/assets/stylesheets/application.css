@@ -11,6 +11,8 @@
  * Otros:   bootstrap  bootstrap_responsive  font font-awesome
  *
  *= require_self
+ *= require jquery-ui/core
+ *= require jquery-ui/theme
  *= require dataTables/jquery.dataTables
  *= require metro-bootstrap
  *= require metro-bootstrap-responsive

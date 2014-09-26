@@ -1,24 +1,37 @@
 <%= page_heading "Lista de Tipos de Datos" %>
 
-<table class="table striped bordered hovered">
-  <tr>
-    <th>Name</th>
-    <th>Ptype</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+<div class="example">
 
+<table id="table_content_data_type" class="table striped bordered hovered">
+  <thead>
+	  <tr>
+	    <th>Nombre</th>
+	    <th>Tipo de dato en Ruby</th>
+	    <th></th>
+	    <th></th>
+	  </tr>
+  </thead>
+  <tbody>
 <% @content_data_types.each do |content_data_type| %>
   <tr>
-    <td><%= content_data_type.name %></td>
-    <td><%= content_data_type.ptype %></td>
-    <td><%= link_to 'Show', content_data_type %></td>
-    <td><%= link_to 'Edit', edit_content_data_type_path(content_data_type) %></td>
-    <td><%= link_to 'Destroy', content_data_type, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= link_to content_data_type.name, content_data_type %></td>
+    <td><%= content_data_type.ptype %></td>    
+    <td><%= link_to '<i class="icon-pencil fg-darker"></i>'.html_safe, edit_content_data_type_path(content_data_type) %></td>
+    <td><%= link_to '<i class="icon-remove fg-darker"></i>'.html_safe, content_data_type, method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
 <% end %>
+  </tbody>
+  <tfoot>
+	  <tr>
+	    <th>Nombre</th>
+	    <th>Tipo de dato en Ruby</th>
+	    <th></th>
+	    <th></th>
+	  </tr>
+  </tfoot>
 </table>
+
+</div>
 
 <br />
 

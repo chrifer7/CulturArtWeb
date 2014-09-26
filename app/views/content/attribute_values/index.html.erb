@@ -1,33 +1,49 @@
 <%= page_heading "Lista de Sub Tipologías" %>
 
-<table class="table striped bordered hovered">
-  <tr>
-    <th>Attribute</th>
-    <th>Name</th>
-    <th>Description</th>
-    <th>Icon</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
+<div class="example">
+	
+<table id="table_content_attribute_values" class="table striped bordered hovered">
+  <thead>
+	  <tr>	    
+	    <th>Nombre</th>
+	    <th>Descripción</th>
+	    <th>Ícono</th>
+	    <th>Tipología</th>
+	    <th></th>
+	    <th></th>
+	  </tr>
+  </thead>
+  <tbody>
 <% @content_attribute_values.each do |content_attribute_value| %>
   <tr>
     <!-- <td><%= Content::Attribute.find(content_attribute_value.attribute_id).name %></td> -->
-    <% if content_attribute_value.attribute_id
-    	@attr = Content::Attribute.find(content_attribute_value.attribute_id)
-    %>
-    <td><%= link_to @attr.name, @attr %></td>
-    <td><%= content_attribute_value.name %></td>
+    <% 	@attr = ""
+	  	if content_attribute_value.attribute_id
+    		@attr = Content::Attribute.find(content_attribute_value.attribute_id)
+    %>    
+    <td><%= link_to content_attribute_value.name, content_attribute_value %></td>
     <td><%= content_attribute_value.description %></td>
-    <td><%= image_tag content_attribute_value.icon.url(:medium) %></td>
-    <td><%= link_to 'Show', content_attribute_value %></td>
-    <td><%= link_to 'Edit', edit_content_attribute_value_path(content_attribute_value) %></td>
-    <td><%= link_to 'Destroy', content_attribute_value, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= image_tag content_attribute_value.icon.url(:medium) %></td> 
+    <td><%= link_to @attr.name, @attr %></td>   
+    <td><%= link_to '<i class="icon-pencil fg-darker"></i>'.html_safe, edit_content_attribute_value_path(content_attribute_value) %></td>
+    <td><%= link_to '<i class="icon-remove fg-darker"></i>'.html_safe, content_attribute_value, method: :delete, data: { confirm: 'Are you sure?' } %></td>
     <% end %>
   </tr>
 <% end %>
+  </tbody>
+  <tfoot>
+	  <tr>
+	    <th>Tipología</th>
+	    <th>Nombre</th>
+	    <th>Descripción</th>
+	    <th>Ícono</th>
+	    <th></th>
+	    <th></th>
+	  </tr>
+  </tfoot>	  	
 </table>
+
+</div>
 
 <br />
 

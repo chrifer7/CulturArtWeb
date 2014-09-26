@@ -1,27 +1,37 @@
 <%= page_heading "Lista de Tipos de Atributos" %>
 
+<div class="example">
+	
 <table id="table_content_attribute_types" class="table striped bordered hovered">
   <thead>
 	  <tr>
-	    <th>Name</th>
-	    <th>Description</th>
-	    <th>Show</th>
-	    <th>Edit</th>
-	    <th>Destroy</th>
+	    <th>Nombre</th>
+	    <th>Descripción</th>
+	    <th></th>
+	    <th></th>
 	  </tr>
   </thead>
   <tbody>
 <% @content_attribute_types.each do |content_attribute_type| %>
   <tr>
-    <td><%= content_attribute_type.name %></td>
+    <td><%= link_to content_attribute_type.name, content_attribute_type %></td>
     <td><%= content_attribute_type.description %></td>
-    <td><%= link_to 'Show', content_attribute_type %></td>
-    <td><%= link_to 'Edit', edit_content_attribute_type_path(content_attribute_type) %></td>
-    <td><%= link_to 'Destroy', content_attribute_type, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= link_to '<i class="icon-pencil fg-darker"></i>'.html_safe, edit_content_attribute_type_path(content_attribute_type) %></td>    
+    <td><%= link_to '<i class="icon-remove fg-darker"></i>'.html_safe, content_attribute_type, method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
 <% end %>
   </tbody>
+  <tfoot>
+	  <tr>
+	    <th>Nombre</th>
+	    <th>Descripción</th>
+	    <th></th>
+	    <th></th>
+	  </tr>
+  </tfoot>
 </table>
+
+</div>
 
 <br />
 
