@@ -47,8 +47,8 @@ development:
   # username: culturart
   # password: 5133264991
 # #NET START postgresql-x64-9.3
-test: &test
-  <<: *defaults
+# test: &test
+  # <<: *defaults
 
 production:
   <<: *defaults
